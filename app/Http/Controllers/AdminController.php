@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pais;
 
-class UserDataController extends Controller
+class AdminController extends Controller
 {
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function perfil()
+    public function proyectos()
     {
         $paises = Pais::all()->sortBy("nombre");
         $ciudades = $paises->first()->ciudades->sortBy("nombre");
@@ -26,7 +26,20 @@ class UserDataController extends Controller
         );
     }
 
-    public function miFormulario() {
+    public function formularios() {
+        $paises = Pais::all()->sortBy("nombre");
+        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+
+        return view(
+            'users.mi-formulario',
+            [
+                "paises" => $paises,
+                "ciudades" => $ciudades
+            ]
+        );
+    }
+
+    public function usuarios() {
         $paises = Pais::all()->sortBy("nombre");
         $ciudades = $paises->first()->ciudades->sortBy("nombre");
 

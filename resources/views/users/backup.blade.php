@@ -1,4 +1,4 @@
-@extends('layouts/welcome')
+@extends('layouts.welcome')
 
 @section('content')
 <form action='/registros' method='post' id='form-usuarios'>
