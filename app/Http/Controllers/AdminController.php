@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Models\Pais;
 
@@ -14,15 +15,11 @@ class AdminController extends Controller
      */
     public function proyectos()
     {
-        $paises = Pais::all()->sortBy("nombre");
-        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+        $proyectos = Proyecto::all()->sortBy("id");
 
         return view(
-            'users.perfil',
-            [
-                "paises" => $paises,
-                "ciudades" => $ciudades
-            ]
+            'admin.proyectos',
+            ["proyectos" => $proyectos]
         );
     }
 

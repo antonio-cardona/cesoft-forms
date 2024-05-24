@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/sass/welcome.scss',
                 'resources/js/welcome.js',
+                'resources/js/admin/proyectos.js',
+                'resources/js/admin/proyectos/nuevo.js',
             ],
             refresh: true,
         }),
