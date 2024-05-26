@@ -32,4 +32,35 @@ class ProyectoController extends Controller
 
         return redirect('/admin/proyectos');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function detalle(Request $request, string $id)
+    {
+        $proyecto = Proyecto::find($id);
+        $areas = $proyecto->areas;
+
+        return view('proyectos.detalle', [
+            "proyecto" => $proyecto,
+            "areas" => $areas
+        ]);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function proyectos()
+    {
+        $proyectos = Proyecto::all()->sortBy("id");
+
+        return view(
+            'proyectos.lista',
+            ["proyectos" => $proyectos]
+        );
+    }
 }

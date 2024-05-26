@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas_nivel_superior', function (Blueprint $table) {
+        Schema::create('areas_nivel_superiores', function (Blueprint $table) {
             $table->increments('id');
             $table->string("nombre", 100);
             $table->foreignIdFor(Proyecto::class);
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas_nivel_superior');
+        Schema::dropIfExists('areas_nivel_superiores');
     }
 };

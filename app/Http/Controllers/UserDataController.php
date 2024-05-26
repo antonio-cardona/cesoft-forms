@@ -38,4 +38,30 @@ class UserDataController extends Controller
             ]
         );
     }
+
+    public function miFormularioPaso2() {
+        $paises = Pais::all()->sortBy("nombre");
+        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+
+        return view(
+            'users.mi-formulario-paso-2',
+            [
+                "paises" => $paises,
+                "ciudades" => $ciudades
+            ]
+        );
+    }
+
+    public function miFormularioPaso3() {
+        $paises = Pais::all()->sortBy("nombre");
+        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+
+        return view(
+            'users.mi-formulario-paso-3',
+            [
+                "paises" => $paises,
+                "ciudades" => $ciudades
+            ]
+        );
+    }
 }
