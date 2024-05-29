@@ -38,13 +38,12 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">variable number 3</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">With supporting text below as a natural lead-in to additional contenido.</p>
         <a href="#" class="btn btn-primary">Seleciona</a>
       </div>
     </div>
   </div>
 </div>
-
 @stop
 
 @section('css')
