@@ -35,9 +35,9 @@
         <table id="tabla-ans" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
+                    <th width="5%">ID</th>
                     <th width="60%">Área</th>
-                    <th width="30%">Acciones</th>
+                    <th width="35%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +53,13 @@
                                             data-toggle="tooltip" data-placement="top" title="Preguntas Significativas"
                                             href="/admin/preguntas/{{ $area->id }}"">
                                             <i class="fas fa-plus"></i> Preguntas
+                                        </a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                            data-toggle="tooltip" data-placement="top" title="Editar Area de Nivel Superior"
+                                            href="/admin/areas/editar/{{ $area->id }}"">
+                                            <i class=" fas fa-edit"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm">
@@ -83,5 +90,5 @@
 @stop
 
 @section('js')
-    @vite(['resources/js/admin/proyectos/areas.js'])
+    @vite(['resources/js/admin/areas/areas.js'])
 @stop

@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/crear', 'crear')
                 ->name("crear-proyecto");
+
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-proyecto");
         });
 
     Route::controller(AreaNivelSuperiorController::class)->prefix("admin/areas")

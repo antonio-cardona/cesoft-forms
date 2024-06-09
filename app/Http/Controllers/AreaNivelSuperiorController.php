@@ -34,4 +34,18 @@ class AreaNivelSuperiorController extends Controller
             "areas" => $areas
         ]);
     }
+
+    public function editar(Request $request, string $id)
+    {
+        $area = AreaNivelSuperior::find($id);
+        $proyecto = $area->proyecto;
+
+        return view(
+            'areas.editar',
+            [
+                "area" => $area,
+                "proyecto" => $proyecto
+            ]
+        );
+    }
 }

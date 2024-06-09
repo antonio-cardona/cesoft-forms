@@ -18,10 +18,10 @@
         <table id="tabla-proyectos" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
+                    <th width="5%">ID</th>
                     <th width="30%">Nombre</th>
                     <th width="40%">Descripción</th>
-                    <th width="20%">Acciones</th>
+                    <th width="25%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +38,13 @@
                                             data-toggle="tooltip" data-placement="top" title="Áreas de Nivel Superior"
                                             href="/admin/areas/{{ $proyecto->id }}"">
                                             <i class=" fas fa-plus"></i> ANS
+                                        </a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                            data-toggle="tooltip" data-placement="top" title="Editar proyecto"
+                                            href="/admin/proyectos/editar/{{ $proyecto->id }}"">
+                                            <i class=" fas fa-edit"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm">
