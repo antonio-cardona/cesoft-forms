@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProyectoController;
 use Illuminate\Support\Facades\Route;
 
+
+
 Auth::routes();
 
 Route::view("/", "welcome");
@@ -20,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/perfil', 'perfil');
 
             Route::get('/mi-formulario', 'miFormulario');
+            
+
+            
         });
 
     // PROYECTOS:
@@ -57,6 +62,25 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/crear', 'crear')->name("crear-pregunta");
 
+  
+
 
     });
+    // Ruta para la vista del formulario
+    Route::get('/mi-formulario', [UserDataController::class, 'miFormulario'])->name('mi.formulario');
+
+    // Rutas para las vistas de variables
+    Route::get('/variables/variablepregunta1', [UserDataController::class, 'variablePreguntauno'])->name('variablepreguntauno');
+    Route::get('/variables/variablepregunta2', [UserDataController::class, 'variablePreguntados'])->name('variablepreguntados');
+   
+    
+    
+
+
+  
+
+
+   
 });
+
+
