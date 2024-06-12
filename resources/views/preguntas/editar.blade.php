@@ -3,9 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Proyecto: <a href="">{{ $proyecto->nombre }}</a></h1>
+    <h1>Proyecto: <a href=""></a></h1>
     <br>
-    <h4>Areas de Nivel Superior</h4>
+    <h3>Area de Nivel Superior: <a href="">{{ $area->nombre }}</a></h3>
+    <br>
+    <h3>Preguntas Significativas</h3>
 @stop
 
 @section('content')
@@ -16,16 +18,16 @@
     <div class="container">
         <form id="form-actualizar-area" action="{{ route('actualizar-area') }}" method="POST">
             @csrf
-            <input type="hidden" id="id_proyecto" value="{{ $proyecto->id }}" />
-            <input type="hidden" name="id" value="{{ $area->id }}" />
+            <input type="hidden" id="id_area" value="{{ $area->id }}" />
+            <input type="hidden" name="id" value="{{ $pregunta->id }}" />
             <div class="row">
                 <div class="col-sm align-middle">
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Área"
-                        required value="{{ $area->nombre }}">
+                    <input type="text" class="form-control" id="texto" name="texto" placeholder="Pregunta"
+                        required value="{{ $pregunta->texto }}">
                 </div>
                 <div class="col-sm align-middle">
-                    <button id="btn-actualizar-area" type="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Actualizar Área
+                    <button id="btn-actualizar-pregunta" type="button" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Actualizar Pregunta
                     </button>
                     <button id="btn-cancelar" type="button" class="btn btn-secondary">
                         <i class="fas fa-window-close"></i> Cancelar
@@ -42,5 +44,5 @@
 @stop
 
 @section('js')
-    @vite(['resources/js/admin/areas/editar.js'])
+    @vite(['resources/js/admin/preguntas/editar.js'])
 @stop

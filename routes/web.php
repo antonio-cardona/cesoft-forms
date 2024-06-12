@@ -22,9 +22,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/perfil', 'perfil');
 
             Route::get('/mi-formulario', 'miFormulario');
-            
-
-            
         });
 
     // PROYECTOS:
@@ -50,37 +47,31 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/{idProyecto}', 'areas');
 
-            Route::post('/crear', 'crear')->name("crear-area");
+            Route::post('/crear', 'crear')
+                ->name("crear-area");
 
-            Route::get('/editar/{id}', 'editar')->name("editar-area");
+            Route::get('/editar/{id}', 'editar')
+                ->name("editar-area");
 
             Route::get('/eliminar', 'eliminar');
+
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-area");
         });
 
-    Route::controller(PreguntaSignificativaController::class)->prefix("admin/preguntas")->group(function () {
-        Route::get('/{id}', 'preguntas');
+    Route::controller(PreguntaSignificativaController::class)->prefix("admin/preguntas")
+        ->group(function () {
+            Route::get('/{idArea}', 'preguntas');
 
-        Route::post('/crear', 'crear')->name("crear-pregunta");
+            Route::post('/crear', 'crear')
+                ->name("crear-pregunta");
 
-  
+            Route::get('/editar/{id}', 'editar')
+                ->name("editar-pregunta");
 
+            Route::get('/eliminar', 'eliminar');
 
-    });
-    // Ruta para la vista del formulario
-    Route::get('/mi-formulario', [UserDataController::class, 'miFormulario'])->name('mi.formulario');
-
-    // Rutas para las vistas de variables
-    Route::get('/variables/variablepregunta1', [UserDataController::class, 'variablePreguntauno'])->name('variablepreguntauno');
-    Route::get('/variables/variablepregunta2', [UserDataController::class, 'variablePreguntados'])->name('variablepreguntados');
-   
-    
-    
-
-
-  
-
-
-   
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-pregunta");
+        });
 });
-
-

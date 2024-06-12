@@ -5,15 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Pais extends Model
+class Country extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'paises';
-
     /**
      * Indicates if the model should be timestamped.
      *
@@ -29,10 +22,17 @@ class Pais extends Model
     public $incrementing = false;
 
     /**
+     * The data type of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * Get ciudades for pais.
      */
-    public function ciudades(): HasMany
+    public function cities(): HasMany
     {
-        return $this->hasMany(Ciudad::class);
+        return $this->hasMany(City::class);
     }
 }

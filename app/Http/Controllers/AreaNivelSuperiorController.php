@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AreaNivelSuperior;
+use App\Models\Area;
 use App\Models\Proyecto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class AreaNivelSuperiorController extends Controller
 {
     public function crear(Request $request): RedirectResponse
     {
-        $area = new AreaNivelSuperior;
+        $area = new Area;
         $area->nombre = $request->input('nombre');
         $area->proyecto_id = $request->input('proyecto_id');
         $area->save();
@@ -37,7 +37,7 @@ class AreaNivelSuperiorController extends Controller
 
     public function editar(Request $request, string $id)
     {
-        $area = AreaNivelSuperior::find($id);
+        $area = Area::find($id);
         $proyecto = $area->proyecto;
 
         return view(
@@ -47,5 +47,19 @@ class AreaNivelSuperiorController extends Controller
                 "proyecto" => $proyecto
             ]
         );
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function actualizar(Request $request): RedirectResponse
+    {
+        $area = Area::find($request->input('id'));
+        $area->nombre = $request->input('nombre');
+        $area->save();
+
+        return redirect("/admin/areas/{$area->proyecto->id}");
     }
 }

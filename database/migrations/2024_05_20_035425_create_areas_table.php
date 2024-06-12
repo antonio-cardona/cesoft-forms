@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\AreaNivelSuperior;
+use App\Models\Proyecto;
 
 return new class extends Migration
 {
@@ -12,11 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('preguntas_significativas', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("texto", 300);
-            $table->unsignedSmallInteger("orden");
-            $table->foreignIdFor(AreaNivelSuperior::class);
+            $table->string("nombre", 100);
+            $table->foreignIdFor(Proyecto::class);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('preguntas_significativas');
+        Schema::dropIfExists('areas');
     }
 };

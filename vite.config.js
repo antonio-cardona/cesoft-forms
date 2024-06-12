@@ -9,11 +9,16 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/sass/welcome.scss',
                 'resources/js/welcome.js',
+
                 'resources/js/admin/proyectos/proyectos.js',
                 'resources/js/admin/proyectos/nuevo.js',
                 'resources/js/admin/proyectos/editar.js',
+
                 'resources/js/admin/areas/areas.js',
+                'resources/js/admin/areas/editar.js',
+
                 'resources/js/admin/preguntas/preguntas.js',
+                'resources/js/admin/preguntas/editar.js',
             ],
             refresh: true,
         }),

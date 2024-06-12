@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Proyecto extends Model
 {
     /**
-     * Get the AreaNivelSuperior for the Proyecto.
+     * Get the Area for the Proyecto.
      */
     public function areas(): HasMany
     {
-        return $this->hasMany(AreaNivelSuperior::class);
+        return $this->hasMany(Area::class);
     }
 
 

@@ -31,7 +31,7 @@
                 </div>
             </div>
         </form>
-<br/>
+        <br />
         <table id="tabla-ans" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
@@ -52,13 +52,12 @@
                                         <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Editar la Pregunta"
                                             href="/admin/preguntas/editar/{{ $pregunta->id }}"">
-                                            <i class="fas fa-plus"></i> Editar
+                                            <i class=" fas fa-plus"></i> Editar
                                         </a>
                                     </div>
                                     <div class="col-sm">
                                         <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Eliminar Área"><i
-                                                class="fas fa-minus"></i></button>
+                                            data-placement="top" title="Eliminar Área"><i class="fas fa-minus"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -83,5 +82,5 @@
 @stop
 
 @section('js')
-    @vite(['resources/js/admin/proyectos/preguntas.js'])
+    @vite(['resources/js/admin/preguntas/preguntas.js'])
 @stop

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use Illuminate\Http\Request;
-use App\Models\Pais;
 
 class UserDataController extends Controller
 {
@@ -14,8 +14,8 @@ class UserDataController extends Controller
      */
     public function perfil()
     {
-        $paises = Pais::all()->sortBy("nombre");
-        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+        $paises = Country::all()->sortBy("nombre");
+        $ciudades = $paises->first()->cities->sortBy("nombre");
 
         return view(
             'users.perfil',
@@ -27,8 +27,8 @@ class UserDataController extends Controller
     }
 
     public function miFormulario() {
-        $paises = Pais::all()->sortBy("nombre");
-        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+        $paises = Country::all()->sortBy("nombre");
+        $ciudades = $paises->first()->cities->sortBy("nombre");
 
         return view(
             'users.mi-formulario',
@@ -40,8 +40,8 @@ class UserDataController extends Controller
     }
 
     public function miFormularioPaso2() {
-        $paises = Pais::all()->sortBy("nombre");
-        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+        $paises = Country::all()->sortBy("nombre");
+        $ciudades = $paises->first()->cities->sortBy("nombre");
 
         return view(
             'users.mi-formulario-paso-2',
@@ -53,8 +53,8 @@ class UserDataController extends Controller
     }
 
     public function miFormularioPaso3() {
-        $paises = Pais::all()->sortBy("nombre");
-        $ciudades = $paises->first()->ciudades->sortBy("nombre");
+        $paises = Country::all()->sortBy("nombre");
+        $ciudades = $paises->first()->cities->sortBy("nombre");
 
         return view(
             'users.mi-formulario-paso-3',
@@ -64,10 +64,10 @@ class UserDataController extends Controller
             ]
         );
     }
-    
-    
+
+
 }
-    
+
 
 
 
