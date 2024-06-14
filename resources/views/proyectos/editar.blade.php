@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Proyecto Nuevo</h1>
+    <h1>Editar Proyecto: {{ $proyecto->nombre }}</h1>
 @stop
 
 @section('content')

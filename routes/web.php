@@ -41,11 +41,21 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-proyecto");
+
+            Route::get('/pre-publicar/{id}', 'prePublicar')
+                ->name("pre-publicar-proyecto");
+
+            Route::get('/publicar/{id}', 'publicar')
+                ->name("publicar-proyecto");
+
+            Route::get('/datos-clasificacion/{id}', 'datosClasificacion')
+                ->name("datos-clasificacion-proyecto");
         });
 
     Route::controller(AreaNivelSuperiorController::class)->prefix("admin/areas")
         ->group(function () {
-            Route::get('/{idProyecto}', 'areas');
+            Route::get('/{idProyecto}', 'areas')
+                ->name("listar-areas");
 
             Route::post('/crear', 'crear')
                 ->name("crear-area");

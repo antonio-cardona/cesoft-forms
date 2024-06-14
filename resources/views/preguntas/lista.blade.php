@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Proyecto: <a href="">{{ $proyecto->nombre }}</a></h1>
+    <h1>Proyecto: <a href="{{ route('listar-areas', [$proyecto->id]) }}">{{ $proyecto->nombre }}</a></h1>
     <br>
-    <h3>Area de Nivel Superior: <a href="">{{ $area->nombre }}</a></h3>
+    <h3>Area de Nivel Superior: {{ $area->nombre }}</h3>
     <br>
     <h3>Preguntas Significativas</h3>
 @stop

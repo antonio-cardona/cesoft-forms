@@ -93,4 +93,24 @@ class ProyectoController extends Controller
 
         return redirect('/admin/proyectos');
     }
+
+    public function prePublicar(Request $request, string $id)
+    {
+        $proyecto = Proyecto::find($id);
+
+        return view(
+            'proyectos.pre-publicar',
+            ["proyecto" => $proyecto]
+        );
+    }
+
+    public function datosClasificacion(Request $request, string $id)
+    {
+        $proyecto = Proyecto::find($id);
+
+        return view(
+            'proyectos.pre-publicar',
+            ["proyecto" => $proyecto]
+        );
+    }
 }

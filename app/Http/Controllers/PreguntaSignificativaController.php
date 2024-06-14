@@ -34,7 +34,6 @@ class PreguntaSignificativaController extends Controller
     public function editar(Request $request, string $id)
     {
         $pregunta = Pregunta::find($id);
-
         $area = $pregunta->area;
 
         return view(
@@ -42,7 +41,7 @@ class PreguntaSignificativaController extends Controller
             [
                 "pregunta" => $pregunta,
                 "area" => $area,
-                //"proyecto" => $area->proyecto
+                "proyecto" => $area->proyecto
             ]
         );
     }

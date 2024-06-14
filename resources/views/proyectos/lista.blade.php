@@ -19,9 +19,9 @@
             <thead>
                 <tr>
                     <th width="5%">ID</th>
-                    <th width="30%">Nombre</th>
-                    <th width="40%">Descripción</th>
-                    <th width="25%">Acciones</th>
+                    <th width="29%">Nombre</th>
+                    <th width="29%">Descripción</th>
+                    <th width="37%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +38,20 @@
                                             data-toggle="tooltip" data-placement="top" title="Áreas de Nivel Superior"
                                             href="/admin/areas/{{ $proyecto->id }}"">
                                             <i class=" fas fa-plus"></i> ANS
+                                        </a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                            data-toggle="tooltip" data-placement="top" title="Datos de Clasificación"
+                                            href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
+                                            <i class=" fas fa-info-circle"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                            data-toggle="tooltip" data-placement="top" title="Publicar proyecto"
+                                            href="{{ route('pre-publicar-proyecto', [$proyecto->id]) }}">
+                                            <i class=" fas fa-upload"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm">

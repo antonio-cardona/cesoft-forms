@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Proyecto: <a href="">{{ $proyecto->nombre }}</a></h1>
+    <h1>Proyecto: {{ $proyecto->nombre }}</h1>
     <br>
     <h4>Areas de Nivel Superior</h4>
 @stop
