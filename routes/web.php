@@ -5,6 +5,7 @@ use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -83,5 +84,26 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-pregunta");
+        });
+
+    // USUARIOS:
+    Route::controller(UsersController::class)->prefix("admin/usuarios")
+        ->group(function () {
+            Route::get('/', 'users')
+                ->name("lista-usuarios");
+
+            Route::get('/nuevo', 'nuevo');
+
+            Route::get('/editar/{id}', 'editar')
+                ->name("editar-user");
+
+            Route::get('/eliminar', 'eliminar');
+
+            Route::post('/crear', 'crear')
+                ->name("crear-user");
+
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-user");
+
         });
 });

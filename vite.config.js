@@ -19,6 +19,10 @@ export default defineConfig({
 
                 'resources/js/admin/preguntas/preguntas.js',
                 'resources/js/admin/preguntas/editar.js',
+
+                'resources/js/admin/users/users.js',
+                'resources/js/admin/users/nuevo.js',
+                'resources/js/admin/users/editar.js',
             ],
             refresh: true,
         }),
