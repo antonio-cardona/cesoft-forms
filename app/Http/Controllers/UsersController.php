@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -72,12 +73,15 @@ class UsersController extends Controller
      */
     public function crear(Request $request): RedirectResponse
     {
-        $proyecto = new Proyecto;
-        $proyecto->nombre = $request->input('nombre');
-        $proyecto->descripcion = $request->input('descripcion');
-        $proyecto->save();
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        //$user->password = Hash::make($request->input('password'));
+        $user->password = Hash::make("12345678");
+        $user->role = $request->input('role');
+        $user->save();
 
-        return redirect('/admin/users');
+        return redirect('/admin/usuarios');
     }
 
     /**
@@ -87,11 +91,14 @@ class UsersController extends Controller
      */
     public function actualizar(Request $request): RedirectResponse
     {
-        $proyecto = Proyecto::find($request->input('id'));
-        $proyecto->nombre = $request->input('nombre');
-        $proyecto->descripcion = $request->input('descripcion');
-        $proyecto->save();
+        $user = User::find($request->input('id'));
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        //$user->password = Hash::make($request->input('password'));
+        //$user->password = Hash::make("12345678");
+        $user->role = $request->input('role');
+        $user->save();
 
-        return redirect('/admin/users');
+        return redirect('/admin/usuarios');
     }
 }

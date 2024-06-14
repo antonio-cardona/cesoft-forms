@@ -18,10 +18,10 @@
         <table id="tabla-users" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="15%">ID</th>
-                    <th width="25%">Nombre</th>
-                    <th width="25%">Email</th>
-                    <th width="20%">Rol</th>
+                    <th width="10%">ID</th>
+                    <th width="30%">Nombre</th>
+                    <th width="30%">Email</th>
+                    <th width="15%">Rol</th>
                     <th width="15%">Acciones</th>
                 </tr>
             </thead>

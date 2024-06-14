@@ -15,16 +15,37 @@
         <form id="form-actualizar-user" action="{{ route('actualizar-user') }}" method="POST">
             @csrf
             <input type="hidden" name="id" value="{{ $user->id }}">
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Nombre</label>
-                <input type="text" class="form-control" id="name" name="name"
-                    placeholder="" required value="{{ $user->name }}">
+            <input type="hidden" name="role_user" id="role_user" value="{{ $user->role }}">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="" required value="{{ $user->name }}">
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Email</label>
-                <input type="text" class="form-control" id="email" name="email"
-                    placeholder="" required value="{{ $user->email }}">
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email"
+                            placeholder="" required value="{{ $user->email }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="role">Rol</label>
+                        <select class="custom-select" id="role" name="role">
+                            <option value="PARTICIPANTE">Participante</option>
+                            <option value="INVESTIGADOR">Investigador</option>
+                            <option value="ADMINISTRADOR">Administrador</option>
+                        </select>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
                 <button id="btn-actualizar-user" type="button" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Actualizar Usuario</button>

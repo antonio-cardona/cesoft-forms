@@ -312,27 +312,26 @@ return [
             'text' => 'search',
         ],*/
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        [
             'header' => 'ADMINISTRACIÓN',
+            'can' => 'any-admin'
         ],
         [
             'text' => 'Proyectos',
             'url' => 'admin/proyectos',
             'icon' => 'fas fa-fw fa-project-diagram',
+            'can' => 'any-proyectos'
         ],
         [
             'text' => 'Formularios',
             'url' => 'admin/formularios',
             'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'any-users'
         ],
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarios',
             'icon' => 'fas fa-fw fa-users-cog',
+            'can' => 'any-users'
         ],
         [
             'header' => 'FORMULARIOS',
@@ -341,6 +340,7 @@ return [
             'text' => 'Mi Formulario',
             'url' => 'usuarios/mi-formulario',
             'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'mi-formulario'
         ],
         ['header' => 'account_settings'],
         [

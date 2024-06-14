@@ -90,14 +90,15 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(UsersController::class)->prefix("admin/usuarios")
         ->group(function () {
             Route::get('/', 'users')
-                ->name("lista-usuarios");
+                ->name("lista-users");
 
             Route::get('/nuevo', 'nuevo');
 
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-user");
 
-            Route::get('/eliminar', 'eliminar');
+            Route::get('/eliminar', 'eliminar')
+                ->name("eliminar-user");
 
             Route::post('/crear', 'crear')
                 ->name("crear-user");
