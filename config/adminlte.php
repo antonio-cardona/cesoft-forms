@@ -312,6 +312,16 @@ return [
             'text' => 'search',
         ],*/
         [
+            'header' => 'SUPER ADMINISTRACIÓN',
+            'can' => 'any-super-admin'
+        ],
+        [
+            'text' => 'Datos de Clasificación',
+            'url' => 'admin/datos-clasificacion',
+            'icon' => 'fas fa-fw fa-info-circle',
+            'can' => 'any-super-admin'
+        ],
+        [
             'header' => 'ADMINISTRACIÓN',
             'can' => 'any-admin'
         ],

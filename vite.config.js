@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/js/admin/proyectos/proyectos.js',
                 'resources/js/admin/proyectos/nuevo.js',
                 'resources/js/admin/proyectos/editar.js',
+                'resources/js/admin/proyectos/datos-clasificacion.js',
 
                 'resources/js/admin/areas/areas.js',
                 'resources/js/admin/areas/editar.js',
@@ -23,6 +24,11 @@ export default defineConfig({
                 'resources/js/admin/users/users.js',
                 'resources/js/admin/users/nuevo.js',
                 'resources/js/admin/users/editar.js',
+
+                'resources/js/admin/datos-clasificacion/lista.js',
+                'resources/js/admin/datos-clasificacion/editar.js',
+                'resources/js/admin/datos-clasificacion/options.js',
+                'resources/js/admin/datos-clasificacion/edit-option.js',
             ],
             refresh: true,
         }),

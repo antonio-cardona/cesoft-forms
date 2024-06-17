@@ -51,5 +51,12 @@ class AppServiceProvider extends ServiceProvider
                 ["SUPER", "ADMINISTRADOR", "INVESTIGADOR", "PARTICIPANTE"]
             );
         });
+
+        Gate::define('any-super-admin', function (User $user) {
+            return in_array(
+                $user->role,
+                ["SUPER"]
+            );
+        });
     }
 }

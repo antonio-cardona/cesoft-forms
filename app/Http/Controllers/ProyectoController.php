@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassificationData;
 use App\Models\Proyecto;
+use App\Models\ProyectoClassificationData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -107,10 +109,42 @@ class ProyectoController extends Controller
     public function datosClasificacion(Request $request, string $id)
     {
         $proyecto = Proyecto::find($id);
+        $classificationData = ClassificationData::all();
+        $cData = [];
+
+        foreach ($classificationData as $tempData) {
+            $cData[] = (object) [
+                "id" => $tempData->id,
+                "nombre" => $tempData->nombre,
+                "options" => $tempData->options,
+            ];
+        }
 
         return view(
-            'proyectos.pre-publicar',
-            ["proyecto" => $proyecto]
+            'proyectos.datos-clasificacion',
+            [
+                "proyecto" => $proyecto,
+                "cData" => $cData
+            ]
         );
+    }
+
+    public function saveDatosClasificacion(Request $request)
+    {
+        $idProyecto = $request->input('idProyecto');
+        $classificationData = $request->input('clasificacion');
+
+        foreach ($classificationData as $cData) {
+            $proyectoCData = new ProyectoClassificationData;
+            $proyectoCData->proyecto_id = $idProyecto;
+            $proyectoCData->classification_data_id = $cData['id'];
+            $proyectoCData->orden = $cData['orden'];
+            $proyectoCData->save();
+        }
+
+        return response([
+            "errors" => "NO",
+            "result" => $proyectoCData
+        ]);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AreaNivelSuperiorController;
+use App\Http\Controllers\ClassificationDataController;
 use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home');
 
-    Route::controller(UserDataController::class)->prefix("usuarios")
+    Route::controller(UserDataController::class)
+        ->prefix("usuario")
         ->group(function () {
             Route::get('/perfil', 'perfil');
 
@@ -26,7 +27,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
     // PROYECTOS:
-    Route::controller(ProyectoController::class)->prefix("admin/proyectos")
+    Route::controller(ProyectoController::class)
+        ->prefix("admin/proyectos")
         ->group(function () {
             Route::get('/', 'proyectos');
 
@@ -51,9 +53,14 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/datos-clasificacion/{id}', 'datosClasificacion')
                 ->name("datos-clasificacion-proyecto");
+
+            Route::post('/datos-clasificacion/guardar', 'saveDatosClasificacion')
+                ->name("guardar-datos-clasificacion-proyecto");
         });
 
-    Route::controller(AreaNivelSuperiorController::class)->prefix("admin/areas")
+    // AREAS:
+    Route::controller(AreaNivelSuperiorController::class)
+        ->prefix("admin/areas")
         ->group(function () {
             Route::get('/{idProyecto}', 'areas')
                 ->name("listar-areas");
@@ -70,7 +77,9 @@ Route::middleware(['auth'])->group(function () {
                 ->name("actualizar-area");
         });
 
-    Route::controller(PreguntaSignificativaController::class)->prefix("admin/preguntas")
+    // PREGUNTAS SIGNIFICATIVAS:
+    Route::controller(PreguntaSignificativaController::class)
+        ->prefix("admin/preguntas")
         ->group(function () {
             Route::get('/{idArea}', 'preguntas');
 
@@ -87,7 +96,8 @@ Route::middleware(['auth'])->group(function () {
         });
 
     // USUARIOS:
-    Route::controller(UsersController::class)->prefix("admin/usuarios")
+    Route::controller(UsersController::class)
+        ->prefix("admin/usuarios")
         ->group(function () {
             Route::get('/', 'users')
                 ->name("lista-users");
@@ -105,6 +115,38 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-user");
+        });
 
+    // DATOS DE CLASIFICACIÓN:
+    Route::controller(ClassificationDataController::class)
+        ->prefix("admin/datos-clasificacion")
+        ->group(function () {
+            Route::get('/', 'index')
+                ->name("lista-datos-clasificacion");
+
+            Route::get('/nuevo', 'nuevo');
+
+            Route::get('/editar/{id}', 'editar')
+                ->name("editar-dato-clasificacion");
+
+            Route::get('/eliminar', 'eliminar');
+
+            Route::get('/opciones/{idClassificationData}', 'options')
+                ->name("options-dato-clasificacion");
+
+            Route::get('/opciones/editar/{id}', 'editOption')
+                ->name("editar-option");
+
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-dato-clasificacion");
+
+            Route::post('/crear', 'crear')
+                ->name("crear-dato-clasificacion");
+
+            Route::post('/opciones/crear', 'createOption')
+                ->name("crear-options");
+
+            Route::post('/opciones/actualizar', 'updateOption')
+                ->name("actualizar-option");
         });
 });
