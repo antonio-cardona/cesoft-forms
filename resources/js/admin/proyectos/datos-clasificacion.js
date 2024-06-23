@@ -24,32 +24,38 @@ jQuery(document).ready(() => {
     });
 
     jQuery("#btn-save-proyecto-classification-data").on("click", () => {
+        // Primero recolectamos la info de identificacion:
+        let identification = [];
+        let classification = [];
+
+        let $idCards = jQuery("#identification-selected-list div.identification-card");
+        let ancestorNode;
+
+        $idCards.each((index, element) => {
+            ancestorNode = jQuery(element).parents("div.dropzone").eq(0);
+            identification.push({
+                id: jQuery(element).data("identification-data-id"),
+                orden: ancestorNode.data("order"),
+            });
+        });
+
+        let $clsCards = jQuery("#classification-selected-list div.classification-card, #classification-selected-list-2 div.classification-card");
+        $clsCards.each((index, element) => {
+            ancestorNode = jQuery(element).parents("div.dropzone").eq(0);
+            classification.push({
+                id: jQuery(element).data("classification-data-id"),
+                orden: ancestorNode.data("order"),
+            });
+        });
+
         axios
             .post("/admin/proyectos/datos-clasificacion/guardar", {
                 idProyecto: jQuery("#id-proyecto").val(),
-                identificacion: [
-                    {
-                        id: "DOC",
-                        orden: 1
-                    },
-                    {
-                        id: "CEL",
-                        orden: 2
-                    }
-                ],
-                clasificacion: [
-                    {
-                        id: 2,
-                        orden: 1
-                    },
-                    {
-                        id: 1,
-                        orden: 2
-                    }
-                ],
+                identification: identification,
+                classification: classification
             })
             .then(function (response) {
-                console.log(response);
+                location.href = "/admin/proyectos/datos-clasificacion"
             })
             .catch(function (error) {
                 console.log(error);
