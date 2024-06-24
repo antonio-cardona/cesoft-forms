@@ -77,6 +77,8 @@ class ProyectoController extends Controller
         $proyecto = new Proyecto;
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
+        $proyecto->fecha_final = $request->input('fecha_final');
+        $proyecto->objetivo = $request->input('objetivo');
         $proyecto->save();
 
         return redirect('/admin/proyectos');
@@ -92,6 +94,8 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::find($request->input('id'));
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
+        $proyecto->fecha_final = $request->input('fecha_final');
+        $proyecto->objetivo = $request->input('objetivo');
         $proyecto->save();
 
         return redirect('/admin/proyectos');

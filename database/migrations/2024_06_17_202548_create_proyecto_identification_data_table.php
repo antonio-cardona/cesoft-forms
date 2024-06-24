@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('proyecto_identification_data', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Proyecto::class);
-            $table->string('identification_data_id');
+            $table->string('identification_data_id', 3);
             $table->unsignedSmallInteger("orden");
             $table->timestamps();
         });
