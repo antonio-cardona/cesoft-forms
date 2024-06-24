@@ -101,14 +101,22 @@ class ProyectoController extends Controller
         return redirect('/admin/proyectos');
     }
 
-    public function prePublicar(Request $request, string $id)
+    public function publicar(Request $request, string $idProyecto)
     {
-        $proyecto = Proyecto::find($id);
+        $proyecto = Proyecto::find($idProyecto);
+        $proyecto->status = "PUBLICADO";
+        $proyecto->save();
 
-        return view(
-            'proyectos.pre-publicar',
-            ["proyecto" => $proyecto]
-        );
+        return redirect(route("lista-proyectos"));
+    }
+
+    public function desPublicar(Request $request, string $idProyecto)
+    {
+        $proyecto = Proyecto::find($idProyecto);
+        $proyecto->status = "SIN-PUBLICAR";
+        $proyecto->save();
+
+        return redirect(route("lista-proyectos"));
     }
 
     public function datosClasificacion(Request $request, string $id)

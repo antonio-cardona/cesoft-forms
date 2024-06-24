@@ -30,7 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProyectoController::class)
         ->prefix("admin/proyectos")
         ->group(function () {
-            Route::get('/', 'proyectos');
+            Route::get('/', 'proyectos')
+                ->name("lista-proyectos");
 
             Route::get('/nuevo', 'nuevo');
 
@@ -45,11 +46,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-proyecto");
 
-            Route::get('/pre-publicar/{id}', 'prePublicar')
-                ->name("pre-publicar-proyecto");
-
-            Route::get('/publicar/{id}', 'publicar')
+            Route::get('/publicar/{idProyecto}', 'publicar')
                 ->name("publicar-proyecto");
+
+            Route::get('/despublicar/{idProyecto}', 'desPublicar')
+                ->name("despublicar-proyecto");
 
             Route::get('/datos-clasificacion/{id}', 'datosClasificacion')
                 ->name("datos-clasificacion-proyecto");

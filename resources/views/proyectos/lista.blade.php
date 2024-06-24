@@ -7,65 +7,110 @@
 @stop
 
 @section('content')
+    <div class="modal fade" id="modal-publicar-proyecto" tabindex="-1" aria-labelledby="modal-publicar-proyecto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Publicar Proyecto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Confirma que desea publicar el proyecto <strong id="modal-nombre-proyecto" class="text-primary"></strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a id="btn-confirmar-publicacion" role="button" class="btn btn-primary"
+                        href="">
+                        Si
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-despublicar-proyecto" tabindex="-1" aria-labelledby="modal-despublicar-proyecto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Desactivar Proyecto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Confirma que desea desactivar el proyecto <strong id="modal-nombre-proyecto" class="text-primary"></strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a id="btn-confirmar-despublicacion" role="button" class="btn btn-primary"
+                        href="">
+                        Si
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm"></div>
         </div>
-        <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary" style="margin-bottom: 12px;">
-            Nuevo Proyecto
+        <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary my-3" style="margin-bottom: 12px;">
+            Crear nuevo Proyecto
         </button>
 
         <table id="tabla-proyectos" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="5%">ID</th>
-                    <th width="29%">Nombre</th>
-                    <th width="29%">Descripción</th>
-                    <th width="37%">Acciones</th>
+                    <th width="24%">Nombre</th>
+                    <th width="26%">Descripción</th>
+                    <th width="15%">Fecha Final</th>
+                    <th width="15%">Status</th>
+                    <th width="20%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($proyectos as $proyecto)
                     <tr>
-                        <td>{{ $proyecto->id }}</td>
                         <td>{{ $proyecto->nombre }}</td>
                         <td>{{ $proyecto->descripcion }}</td>
-                        <td class="align-middle">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Áreas de Nivel Superior"
-                                            href="/admin/areas/{{ $proyecto->id }}"">
-                                            <i class=" fas fa-plus"></i> ANS
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Datos de Clasificación"
-                                            href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
-                                            <i class=" fas fa-info-circle"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Publicar proyecto"
-                                            href="{{ route('pre-publicar-proyecto', [$proyecto->id]) }}">
+                        <td>{{ $proyecto->fecha_final }}</td>
+                        <td>{{ $proyecto->status }}</td>
+                        <td>
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group mr-2" role="group" aria-label="Diseño Formulario">
+                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                        data-placement="top" title="Áreas de Nivel Superior"
+                                        href="/admin/areas/{{ $proyecto->id }}"">
+                                        <i class=" fas fa-plus"></i> ANS
+                                    </a>
+                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                        data-placement="top" title="Datos de Clasificación"
+                                        href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
+                                        <i class=" fas fa-info-circle"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="modal"
+                                        data-placement="top" title="Publicar proyecto"
+                                        data-target="{{ $proyecto->status == "SIN-PUBLICAR" ? "#modal-publicar-proyecto" : "#modal-despublicar-proyecto" }}"
+                                        data-proyecto-nombre="{{ $proyecto->nombre }}"
+                                        data-url="{{ $proyecto->status == "SIN-PUBLICAR" ? route('publicar-proyecto', [$proyecto->id]) : route('despublicar-proyecto', [$proyecto->id]) }}">
+                                        @if ($proyecto->status == "SIN-PUBLICAR")
                                             <i class=" fas fa-upload"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Editar proyecto"
-                                            href="/admin/proyectos/editar/{{ $proyecto->id }}"">
-                                            <i class=" fas fa-edit"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Eliminar Proyecto"><i
-                                                class="fas fa-minus"></i></button>
-                                    </div>
+                                        @else
+                                            <i class=" fas fa-download"></i>
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
+                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                        data-placement="top" title="Editar proyecto"
+                                        href="/admin/proyectos/editar/{{ $proyecto->id }}"">
+                                        <i class=" fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Eliminar Proyecto">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -76,6 +121,8 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Fecha Final</th>
+                    <th>Status</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
