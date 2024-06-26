@@ -15,5 +15,8 @@ class Proyecto extends Model
         return $this->hasMany(Area::class);
     }
 
-
+    public function forms(): HasMany
+    {
+        return $this->hasMany(Form::class);
+    }
 }
