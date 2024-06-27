@@ -347,10 +347,10 @@ return [
             'header' => 'FORMULARIOS',
         ],
         [
-            'text' => 'Mi Formulario',
-            'url' => 'usuarios/mi-formulario',
+            'text' => 'Mis Formularios',
+            'url' => 'usuario/mis-formularios',
             'icon' => 'fas fa-fw fa-clipboard',
-            'can' => 'mi-formulario'
+            'can' => 'mis-formularios'
         ],
         ['header' => 'account_settings'],
         [

@@ -19,12 +19,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home');
 
+    // USUARIO:
     Route::controller(UserDataController::class)
         ->prefix("usuario")
         ->group(function () {
             Route::get('/perfil', 'perfil');
 
-            Route::get('/mi-formulario', 'miFormulario');
+            Route::get('/mis-formularios', 'myForms');
         });
 
     // PROYECTOS:

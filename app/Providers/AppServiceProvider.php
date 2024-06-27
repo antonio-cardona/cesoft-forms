@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        Gate::define('mi-formulario', function (User $user) {
+        Gate::define('mis-formularios', function (User $user) {
             return in_array(
                 $user->role,
                 ["SUPER", "ADMINISTRADOR", "INVESTIGADOR", "PARTICIPANTE"]
