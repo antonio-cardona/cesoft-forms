@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AreaNivelSuperiorController;
 use App\Http\Controllers\ClassificationDataController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ProyectoController;
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
                 ->name("editar-proyecto");
 
             Route::get('/eliminar', 'eliminar');
+
+            Route::get('/participantes/{idProyecto}', 'participantes')
+                ->name("participantes-proyecto");
 
             Route::post('/crear', 'crear')
                 ->name("crear-proyecto");
@@ -149,5 +153,46 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/opciones/actualizar', 'updateOption')
                 ->name("actualizar-option");
+        });
+
+    // FORMULARIOS:
+    Route::controller(FormController::class)
+        ->prefix("admin/formularios")
+        ->group(function () {
+            Route::post('/crear', 'create')
+                ->name("crear-formulario");
+
+            Route::get('/eliminar/{idForm}', 'delete')
+                ->name("eliminar-formulario");
+
+            /*
+            Route::get('/', 'index')
+                ->name("lista-datos-clasificacion");
+
+            Route::get('/nuevo', 'nuevo');
+
+            Route::get('/editar/{id}', 'editar')
+                ->name("editar-dato-clasificacion");
+
+            Route::get('/eliminar', 'eliminar');
+
+            Route::get('/opciones/{idClassificationData}', 'options')
+                ->name("options-dato-clasificacion");
+
+            Route::get('/opciones/editar/{id}', 'editOption')
+                ->name("editar-option");
+
+            Route::post('/actualizar', 'actualizar')
+                ->name("actualizar-dato-clasificacion");
+
+            Route::post('/crear', 'crear')
+                ->name("crear-dato-clasificacion");
+
+            Route::post('/opciones/crear', 'createOption')
+                ->name("crear-options");
+
+            Route::post('/opciones/actualizar', 'updateOption')
+                ->name("actualizar-option");
+            */
         });
 });

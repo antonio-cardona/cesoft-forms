@@ -14,6 +14,7 @@ export default defineConfig({
                 'resources/js/admin/proyectos/nuevo.js',
                 'resources/js/admin/proyectos/editar.js',
                 'resources/js/admin/proyectos/datos-clasificacion.js',
+                'resources/js/admin/proyectos/participantes.js',
 
                 'resources/js/admin/areas/areas.js',
                 'resources/js/admin/areas/editar.js',

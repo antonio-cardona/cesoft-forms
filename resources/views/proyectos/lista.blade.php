@@ -62,11 +62,11 @@
         <table id="tabla-proyectos" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="24%">Nombre</th>
-                    <th width="26%">Descripción</th>
+                    <th width="20%">Nombre</th>
+                    <th width="23%">Descripción</th>
                     <th width="15%">Fecha Final</th>
                     <th width="15%">Status</th>
-                    <th width="20%">Acciones</th>
+                    <th width="27%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -88,6 +88,11 @@
                                         data-placement="top" title="Datos de Clasificación"
                                         href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-info-circle"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                        data-placement="top" title="Participantes del Proyecto"
+                                        href="{{ route('participantes-proyecto', [$proyecto->id]) }}">
+                                        <i class=" fas fa-users-cog"></i>
                                     </a>
                                     <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="modal"
                                         data-placement="top" title="Publicar proyecto"

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassificationData;
+use App\Models\Form;
 use App\Models\Proyecto;
 use App\Models\ProyectoClassificationData;
 use App\Models\ProyectoIdentificationData;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -32,8 +34,8 @@ class ProyectoController extends Controller
         $areas = $proyecto->areas;
 
         return view('proyectos.detalle', [
-            "proyecto" => $proyecto,
-            "areas" => $areas
+            'proyecto' => $proyecto,
+            'areas' => $areas,
         ]);
     }
 
@@ -44,12 +46,9 @@ class ProyectoController extends Controller
      */
     public function proyectos()
     {
-        $proyectos = Proyecto::all()->sortBy("id");
+        $proyectos = Proyecto::all()->sortBy('id');
 
-        return view(
-            'proyectos.lista',
-            ["proyectos" => $proyectos]
-        );
+        return view('proyectos.lista', ['proyectos' => $proyectos]);
     }
 
     /**
@@ -61,10 +60,7 @@ class ProyectoController extends Controller
     {
         $proyecto = Proyecto::find($id);
 
-        return view(
-            'proyectos.editar',
-            ["proyecto" => $proyecto]
-        );
+        return view('proyectos.editar', ['proyecto' => $proyecto]);
     }
 
     /**
@@ -74,7 +70,7 @@ class ProyectoController extends Controller
      */
     public function crear(Request $request): RedirectResponse
     {
-        $proyecto = new Proyecto;
+        $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
         $proyecto->fecha_final = $request->input('fecha_final');
@@ -104,19 +100,19 @@ class ProyectoController extends Controller
     public function publicar(Request $request, string $idProyecto)
     {
         $proyecto = Proyecto::find($idProyecto);
-        $proyecto->status = "PUBLICADO";
+        $proyecto->status = 'PUBLICADO';
         $proyecto->save();
 
-        return redirect(route("lista-proyectos"));
+        return redirect(route('lista-proyectos'));
     }
 
     public function desPublicar(Request $request, string $idProyecto)
     {
         $proyecto = Proyecto::find($idProyecto);
-        $proyecto->status = "SIN-PUBLICAR";
+        $proyecto->status = 'SIN-PUBLICAR';
         $proyecto->save();
 
-        return redirect(route("lista-proyectos"));
+        return redirect(route('lista-proyectos'));
     }
 
     public function datosClasificacion(Request $request, string $id)
@@ -126,24 +122,24 @@ class ProyectoController extends Controller
         $classificationData = ClassificationData::all();
         $identificationData = [
             (object) [
-                "id" => "DOC",
-                "nombre" => "Documento de Identidad"
+                'id' => 'DOC',
+                'nombre' => 'Documento de Identidad',
             ],
             (object) [
-                "id" => "CEL",
-                "nombre" => "Número de Celular"
-            ]
+                'id' => 'CEL',
+                'nombre' => 'Número de Celular',
+            ],
         ];
 
-        $proyectoClassificationData = ProyectoClassificationData::where("proyecto_id", $id)->orderBy("orden", "ASC")->get();
-        $proyectoIdentificationData = ProyectoIdentificationData::where("proyecto_id", $id)->orderBy("orden", "ASC")->get();
+        $proyectoClassificationData = ProyectoClassificationData::where('proyecto_id', $id)->orderBy('orden', 'ASC')->get();
+        $proyectoIdentificationData = ProyectoIdentificationData::where('proyecto_id', $id)->orderBy('orden', 'ASC')->get();
 
         $idData = [];
         $idDataSelected = [];
         foreach ($identificationData as $tempIdData) {
             $data = (object) [
-                "id" => $tempIdData->id,
-                "nombre" => $tempIdData->nombre
+                'id' => $tempIdData->id,
+                'nombre' => $tempIdData->nombre,
             ];
 
             // Verificamos si este idData esta en la lista de los proyectoIdData:
@@ -158,8 +154,7 @@ class ProyectoController extends Controller
 
             if ($selected) {
                 $idDataSelected[] = $data;
-            }
-            else {
+            } else {
                 $idData[] = $data;
             }
         }
@@ -168,8 +163,8 @@ class ProyectoController extends Controller
         $cDataSelected = [];
         foreach ($classificationData as $tempClData) {
             $data = (object) [
-                "id" => $tempClData->id,
-                "nombre" => $tempClData->nombre
+                'id' => $tempClData->id,
+                'nombre' => $tempClData->nombre,
             ];
 
             // Verificamos si este cData esta en la lista de los proyectoCData:
@@ -184,8 +179,7 @@ class ProyectoController extends Controller
 
             if ($selected) {
                 $cDataSelected[] = $data;
-            }
-            else {
+            } else {
                 $cData[] = $data;
             }
         }
@@ -196,18 +190,15 @@ class ProyectoController extends Controller
 
         usort($cDataSelected, $comparator);
 
-        return view(
-            'proyectos.datos-clasificacion',
-            [
-                "proyecto" => $proyecto,
-                "idData" => $idData,
-                "idDataSelected" => $idDataSelected,
-                "cData" => $cData,
-                "cDataSelected" => $cDataSelected,
-                "totalId" => count($idData) + count($idDataSelected),
-                "totalCl" => count($cData) + count($cDataSelected)
-            ]
-        );
+        return view('proyectos.datos-clasificacion', [
+            'proyecto' => $proyecto,
+            'idData' => $idData,
+            'idDataSelected' => $idDataSelected,
+            'cData' => $cData,
+            'cDataSelected' => $cDataSelected,
+            'totalId' => count($idData) + count($idDataSelected),
+            'totalCl' => count($cData) + count($cDataSelected),
+        ]);
     }
 
     public function saveDatosClasificacion(Request $request)
@@ -216,11 +207,11 @@ class ProyectoController extends Controller
         $identificationData = $request->input('identification');
         $classificationData = $request->input('classification');
 
-        ProyectoIdentificationData::where("proyecto_id", $idProyecto)->delete();
-        ProyectoClassificationData::where("proyecto_id", $idProyecto)->delete();
+        ProyectoIdentificationData::where('proyecto_id', $idProyecto)->delete();
+        ProyectoClassificationData::where('proyecto_id', $idProyecto)->delete();
 
         foreach ($identificationData as $idData) {
-            $proyectoIdData = new ProyectoIdentificationData;
+            $proyectoIdData = new ProyectoIdentificationData();
             $proyectoIdData->proyecto_id = $idProyecto;
             $proyectoIdData->identification_data_id = $idData['id'];
             $proyectoIdData->orden = $idData['orden'];
@@ -228,7 +219,7 @@ class ProyectoController extends Controller
         }
 
         foreach ($classificationData as $cData) {
-            $proyectoCData = new ProyectoClassificationData;
+            $proyectoCData = new ProyectoClassificationData();
             $proyectoCData->proyecto_id = $idProyecto;
             $proyectoCData->classification_data_id = $cData['id'];
             $proyectoCData->orden = $cData['orden'];
@@ -236,8 +227,27 @@ class ProyectoController extends Controller
         }
 
         return response([
-            "errors" => "NO",
-            "result" => $proyectoCData
+            'errors' => 'NO',
+            'result' => $proyectoCData,
+        ]);
+    }
+
+    public function participantes(Request $request, string $idProyecto)
+    {
+        $proyecto = Proyecto::find($idProyecto);
+
+        $participantesProyecto = Form::whereBelongsTo($proyecto)->get();
+        $idsNoDisponibles = [];
+        foreach ($participantesProyecto as $form) {
+            $idsNoDisponibles[] = $form->user->id;
+        }
+
+        $participantesDisponibles = User::where('role', 'PARTICIPANTE')->orderBy('name')->get()->except($idsNoDisponibles);
+
+        return view('proyectos.participantes', [
+            'proyecto' => $proyecto,
+            'participantesProyecto' => $participantesProyecto,
+            'participantesDisponibles' => $participantesDisponibles,
         ]);
     }
 }
