@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Form extends Model
 {
-    public function user(): BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function proyecto(): BelongsTo
+    public function proyecto() : BelongsTo
     {
         return $this->belongsTo(Proyecto::class);
     }
 
-    public function answers(): HasMany
+    public function areas() : HasMany
+    {
+        return $this->hasMany(FormArea::class);
+    }
+
+    public function answers() : HasMany
     {
         return $this->hasMany(Answer::class);
     }
