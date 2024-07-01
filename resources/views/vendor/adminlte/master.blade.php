@@ -90,6 +90,8 @@
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
 
+    @routes
+
     {{-- Extra Configured Plugins Scripts --}}
     @include('adminlte::plugins', ['type' => 'js'])
 
