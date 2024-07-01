@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AreaNivelSuperiorController;
 use App\Http\Controllers\ClassificationDataController;
+use App\Http\Controllers\FormAreaController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
@@ -26,6 +27,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/perfil', 'perfil');
 
             Route::get('/mis-formularios', 'myForms');
+
+            Route::get('/formulario/areas/{idForm}', 'formAreas')
+                ->name("formulario-areas");
+
+            Route::get('/formulario/preguntas/{idForm}', 'formPreguntas')
+                ->name("form-preguntas");
         });
 
     // PROYECTOS:
@@ -195,5 +202,13 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/opciones/actualizar', 'updateOption')
                 ->name("actualizar-option");
             */
+        });
+
+    // FORMULARIO -> AREAS:
+    Route::controller(FormAreaController::class)
+        ->prefix("form-areas")
+        ->group(function () {
+            Route::post('/create', 'create')
+                ->name("create-form-areas");
         });
 });

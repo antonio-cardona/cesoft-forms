@@ -47,34 +47,72 @@ class UserDataController extends Controller
         );
     }
 
-    public function stepOne()
+    public function formAreas(Request $request, string $idForm)
     {
-        $paises = Country::all()->sortBy("nombre");
-        $ciudades = $paises->first()->cities->sortBy("nombre");
+        $form = Form::find($idForm);
+
+        $proyectoAreas = $form->proyecto->areas;
+
+        $availableAreas = [];
+        $selectedAreas = [];
+        foreach ($proyectoAreas as $tempArea) {
+            $data = (object) [
+                'id' => $tempArea->id,
+                'nombre' => $tempArea->nombre,
+            ];
+
+            // Verificamos si esta area está en la lista de los formArea:
+            $selected = false;
+            foreach ($form->formAreas as $tempFormArea) {
+                if ($tempArea->id == $tempFormArea->area_id) {
+                    $data->orden = $tempFormArea->orden;
+                    $selected = true;
+                    break;
+                }
+            }
+
+            if ($selected) {
+                $selectedAreas[$data->orden] = $data;
+            } else {
+                $availableAreas[] = $data;
+            }
+        }
+
 
         return view(
-            'users.mi-formulario-paso-2',
+            'user-data.form.areas',
             [
-                "paises" => $paises,
-                "ciudades" => $ciudades
+                "form" => $form,
+                "proyecto" => $form->proyecto,
+                "selectedAreas" => $selectedAreas,
+                "availableAreas" => $availableAreas,
+                'totalAreas' => count($selectedAreas) + count($availableAreas),
             ]
         );
     }
 
-    public function miFormularioPaso3()
+
+    public function formPreguntas(Request $request, string $idForm)
     {
-        $paises = Country::all()->sortBy("nombre");
-        $ciudades = $paises->first()->cities->sortBy("nombre");
+        $form = Form::find($idForm);
+
+        // Se obtiene el Area de orden 1 seleccionada por el Participante.
+        //$firstFormArea = $form->areas->where("orden", 1)->first();
+        $firstFormArea = $form->areas->first();
+
+        // Se obtienen las preguntas correspondientes al Area
+        $preguntas = $firstFormArea->preguntas;
 
         return view(
-            'users.mi-formulario-paso-3',
+            'user-data.form.preguntas',
             [
-                "paises" => $paises,
-                "ciudades" => $ciudades
+                "form" => $form,
+                "proyecto" => $form->proyecto,
+                "area" => $firstFormArea,
+                "preguntas" => $preguntas
             ]
         );
     }
-
 
 }
 

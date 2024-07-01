@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
+                'resources/sass/forms.scss',
                 'resources/js/app.js',
                 'resources/sass/welcome.scss',
                 'resources/js/welcome.js',
@@ -30,6 +31,8 @@ export default defineConfig({
                 'resources/js/admin/datos-clasificacion/editar.js',
                 'resources/js/admin/datos-clasificacion/options.js',
                 'resources/js/admin/datos-clasificacion/edit-option.js',
+
+                'resources/js/user/form-area.js',
             ],
             refresh: true,
         }),

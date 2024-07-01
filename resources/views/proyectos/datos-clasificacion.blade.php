@@ -9,31 +9,6 @@
 @stop
 
 @section('content')
-    <style>
-        .item {
-            height: 100%;
-            cursor: grab;
-        }
-
-        .dropzone {
-            height: 64px;
-            margin-bottom: 7px;
-        }
-
-        .draggable-dropzone--occupied {
-            background: #a3cbf0;
-        }
-
-        .order-labels {
-            height: 64px;
-            margin-bottom: 7px;
-            padding: 12px;
-        }
-
-        .drag-identificacion {
-            padding: 12px;
-        }
-    </style>
     <div class="container">
         <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
             <strong>Holy guacamole!</strong> You should check in on some of those fields below.
@@ -242,8 +217,7 @@
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    @vite(['resources/sass/forms.scss'])
 @stop
 
 @section('js')
