@@ -78,7 +78,6 @@ class UserDataController extends Controller
             }
         }
 
-
         return view(
             'user-data.form.areas',
             [
@@ -90,7 +89,6 @@ class UserDataController extends Controller
             ]
         );
     }
-
 
     public function formPreguntas(Request $request, string $idForm)
     {

@@ -24,13 +24,23 @@ class Form extends Model
         return $this->belongsToMany(Area::class, "form_areas");
     }
 
-    public function answers() : HasMany
-    {
-        return $this->hasMany(Answer::class);
-    }
-
     public function formAreas() : HasMany
     {
         return $this->hasMany(FormArea::class);
+    }
+
+    public function preguntas() : BelongsToMany
+    {
+        return $this->belongsToMany(Pregunta::class, "form_preguntas");
+    }
+
+    public function formPreguntas() : HasMany
+    {
+        return $this->hasMany(FormPregunta::class);
+    }
+
+    public function answers() : HasMany
+    {
+        return $this->hasMany(Answer::class);
     }
 }
