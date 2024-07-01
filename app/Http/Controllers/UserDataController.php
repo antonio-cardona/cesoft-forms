@@ -95,6 +95,46 @@ class UserDataController extends Controller
         $form = Form::find($idForm);
 
         // Se obtiene el Area de orden 1 seleccionada por el Participante.
+        $firstFormArea = $form->areas->first();
+
+        // Se obtienen las preguntas correspondientes al Area
+        $preguntas = $firstFormArea->preguntas;
+
+        $preguntasAnswers = [];
+        foreach ($preguntas as $tempPregunta) {
+            $data = (object) [
+                "id" => $tempPregunta->id,
+                "texto" => $tempPregunta->texto,
+                "answer" => ""
+            ];
+
+            // Verificamos si esta pregunta está en la lista de los formPregunta:
+            foreach ($form->formPreguntas as $tempFormPregunta) {
+                if ($tempPregunta->id == $tempFormPregunta->pregunta_id) {
+                    $data->answer = $tempFormPregunta->respuesta;
+                    break;
+                }
+            }
+
+            $preguntasAnswers[] = $data;
+        }
+
+        return view(
+            'user-data.form.preguntas',
+            [
+                "form" => $form,
+                "proyecto" => $form->proyecto,
+                "area" => $firstFormArea,
+                "preguntas" => $preguntasAnswers
+            ]
+        );
+    }
+
+    public function formClassificationData(Request $request, string $idForm)
+    {
+        $form = Form::find($idForm);
+
+        // Se obtiene el Area de orden 1 seleccionada por el Participante.
         //$firstFormArea = $form->areas->where("orden", 1)->first();
         $firstFormArea = $form->areas->first();
 

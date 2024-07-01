@@ -81,7 +81,7 @@
                     <div class="col d-flex d-align-items-center justify-content-center">
                         <input id="id-form" type="hidden" value="{{ $form->id }}">
                         <button id="btn-save-form-areas" type="button" class="btn btn-info btn-lg mx-3">
-                            Guardar Áreas y Continuar
+                            Guardar Áreas y Continuar <i class="far fa-arrow-alt-circle-right"></i>
                         </button>
                     </div>
                 </div>

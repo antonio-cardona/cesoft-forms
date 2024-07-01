@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaNivelSuperiorController;
 use App\Http\Controllers\ClassificationDataController;
 use App\Http\Controllers\FormAreaController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\FormPreguntaController;
 use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ProyectoController;
@@ -33,6 +34,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/formulario/preguntas/{idForm}', 'formPreguntas')
                 ->name("form-preguntas");
+
+            Route::get('/formulario/datos-clasificacion/{idForm}', 'formClassificationData')
+                ->name("form-classification-data");
         });
 
     // PROYECTOS:
@@ -210,5 +214,13 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::post('/create', 'create')
                 ->name("create-form-areas");
+        });
+
+    // FORMULARIO -> PREGUNTAS:
+    Route::controller(FormPreguntaController::class)
+        ->prefix("form-preguntas")
+        ->group(function () {
+            Route::post('/create', 'create')
+                ->name("create-form-preguntas");
         });
 });

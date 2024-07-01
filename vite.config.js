@@ -33,6 +33,7 @@ export default defineConfig({
                 'resources/js/admin/datos-clasificacion/edit-option.js',
 
                 'resources/js/user/form-area.js',
+                'resources/js/user/form-preguntas.js',
             ],
             refresh: true,
         }),
