@@ -19,7 +19,7 @@
                 {{ $proyecto->descripcion }}
             </div>
             <div class="form-group">
-                <button id="btn-actualizar-proyecto" type="button" class="btn btn-primary">
+                <button id="btn-actualizar-proyecto" type="button" class="btn btn-info">
                     <i class="fas fa-upload"></i> Confirmar publicación de proyecto</button>
                 <button id="btn-cancelar" type="button" class="btn btn-secondary"><i class="fas fa-window-close"></i>
                     Cancelar</button>

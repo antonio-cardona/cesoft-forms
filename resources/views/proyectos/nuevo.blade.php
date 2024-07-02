@@ -11,10 +11,10 @@
         Debes llenar el formulario.
     </div>
 
-    <div class="container">
+    <div class="container card card-header">
         <form id="form-crear-proyecto" action="{{ route('crear-proyecto') }}" method="POST">
             @csrf
-            <div class="form-group">
+            <div class="form-group ">
                 <label for="exampleFormControlInput1">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre"
                     placeholder="Nombre del nuevo proyecto" required>
@@ -24,7 +24,7 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <button id="btn-crear-proyecto" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Crear
+                <button id="btn-crear-proyecto" type="button" class="btn btn-info"><i class="fas fa-plus"></i> Crear
                     Proyecto</button>
                 <button id="btn-cancelar" type="button" class="btn btn-secondary"><i class="fas fa-window-close"></i>
                     Cancelar</button>

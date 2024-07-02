@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm"></div>
         </div>
-        <button id="btn-nuevo-user" type="button" class="btn btn-primary" style="margin-bottom: 12px;">
+        <button id="btn-nuevo-user" type="button" class="btn btn-info" style="margin-bottom: 12px;">
             Nuevo Usuario
         </button>
 

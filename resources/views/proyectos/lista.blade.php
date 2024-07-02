@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm"></div>
         </div>
-        <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary" style="margin-bottom: 12px;">
+        <button id="btn-nuevo-proyecto" type="button" class="btn btn-info" style="margin-bottom: 12px;">
             Nuevo Proyecto
         </button>
 
@@ -34,28 +34,28 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-outline-info btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Áreas de Nivel Superior"
                                             href="/admin/areas/{{ $proyecto->id }}"">
                                             <i class=" fas fa-plus"></i> ANS
                                         </a>
                                     </div>
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-outline-info btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Datos de Clasificación"
                                             href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
                                             <i class=" fas fa-info-circle"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-outline-info btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Publicar proyecto"
                                             href="{{ route('pre-publicar-proyecto', [$proyecto->id]) }}">
                                             <i class=" fas fa-upload"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-outline-info btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Editar proyecto"
                                             href="/admin/proyectos/editar/{{ $proyecto->id }}"">
                                             <i class=" fas fa-edit"></i>

@@ -14,13 +14,13 @@
     <div class="container">
         <form id="form-crear-dato-clasificacion" action="{{ route('crear-dato-clasificacion') }}" method="POST">
             @csrf
-            <div class="row">
-                <div class="col-sm align-middle">
+            <div class="card">
+                <div class="card-header bg-info">
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Dato de Clasificación"
                         required>
                 </div>
-                <div class="col-sm align-middle">
-                    <button id="btn-crear-dato-clasificacion" type="button" class="btn btn-primary">
+                <div class="card-header ">
+                    <button id="btn-crear-dato-clasificacion" type="button" class="btn btn-info">
                         <i class="fas fa-plus"></i> Crear Dato de Clasificación
                     </button>
                 </div>
@@ -29,7 +29,7 @@
 
         <br/>
 
-        <table id="tabla-datos-clasificacion" class="table table-striped table-bordered" style="width:100%">
+        <table id="tabla-datos-clasificacion" class="table table-striped table-bordered " style="width:100%">
             <thead>
                 <tr>
                     <th width="5%">ID</th>

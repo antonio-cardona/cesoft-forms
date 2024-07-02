@@ -21,7 +21,7 @@
                         placeholder="Nombre del Dato de Clasificación" required value="{{ $classificationData->nombre }}">
                 </div>
                 <div class="col-sm align-middle">
-                    <button id="btn-actualizar-dato-clasificacion" type="button" class="btn btn-primary">
+                    <button id="btn-actualizar-dato-clasificacion" type="button" class="btn btn-info">
                         <i class="fas fa-plus"></i> Actualizar Dato de Clasificación
                     </button>
                     <a id="btn-cancelar" role="button" class="btn btn-secondary"

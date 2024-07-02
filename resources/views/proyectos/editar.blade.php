@@ -25,7 +25,7 @@
                 <textarea class="form-control" id="descripcion" name="descripcion" rows="3">{{ $proyecto->descripcion }}</textarea>
             </div>
             <div class="form-group">
-                <button id="btn-actualizar-proyecto" type="button" class="btn btn-primary">
+                <button id="btn-actualizar-proyecto" type="button" class="btn btn-info">
                     <i class="fas fa-plus"></i> Actualizar Proyecto</button>
                 <button id="btn-cancelar" type="button" class="btn btn-secondary"><i class="fas fa-window-close"></i>
                     Cancelar</button>
