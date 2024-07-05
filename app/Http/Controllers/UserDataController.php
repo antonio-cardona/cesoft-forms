@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\Form;
+use App\Models\ProyectoClassificationData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,20 +135,35 @@ class UserDataController extends Controller
     {
         $form = Form::find($idForm);
 
-        // Se obtiene el Area de orden 1 seleccionada por el Participante.
-        //$firstFormArea = $form->areas->where("orden", 1)->first();
-        $firstFormArea = $form->areas->first();
+        $formProyectoClassificationData = $form->formProyectoClassificationData;
 
-        // Se obtienen las preguntas correspondientes al Area
-        $preguntas = $firstFormArea->preguntas;
+        $clsData = [];
+
+        foreach ($form->proyecto->proyectoClassificationData as $proyClsData) {
+            $data = (object) [
+                "idProyectoClassificationData" => $proyClsData->id,
+                "cDatum" => $proyClsData->classificationData,
+                "selectedIdOption" => ""
+            ];
+
+            // Verificamos si esta pregunta está en la lista de los formProyectoClassificationData:
+            foreach ($formProyectoClassificationData as $formProyectoClassificationDatum) {
+                if ($proyClsData->id == $formProyectoClassificationDatum->proyecto_classification_data_id) {
+                    $data->selectedIdOption = $formProyectoClassificationDatum->classification_option_id;
+                    break;
+                }
+            }
+
+            $clsData[] = $data;
+        }
 
         return view(
-            'user-data.form.preguntas',
+            'user-data.form.classification-data',
             [
                 "form" => $form,
                 "proyecto" => $form->proyecto,
-                "area" => $firstFormArea,
-                "preguntas" => $preguntas
+                "identificationData" => [],
+                "classificationData" => $clsData
             ]
         );
     }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProyectoClassificationData extends Model
 {
@@ -13,8 +13,13 @@ class ProyectoClassificationData extends Model
         return $this->belongsTo(Proyecto::class);
     }
 
-    public function classificationData(): HasOne
+    public function classificationData(): BelongsTo
     {
-        return $this->hasOne(ClassificationData::class);
+        return $this->belongsTo(ClassificationData::class);
+    }
+
+    public function forms(): BelongsToMany
+    {
+        return $this->belongsToMany(Form::class, "form_proyecto_classification_data");
     }
 }

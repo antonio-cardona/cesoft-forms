@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassificationDataController;
 use App\Http\Controllers\FormAreaController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\FormPreguntaController;
+use App\Http\Controllers\FormProyectoClassificationDataController;
 use App\Http\Controllers\PreguntaSignificativaController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\ProyectoController;
@@ -27,7 +28,8 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/perfil', 'perfil');
 
-            Route::get('/mis-formularios', 'myForms');
+            Route::get('/mis-formularios', 'myForms')
+                ->name("mis-formularios");
 
             Route::get('/formulario/areas/{idForm}', 'formAreas')
                 ->name("formulario-areas");
@@ -176,36 +178,6 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/eliminar/{idForm}', 'delete')
                 ->name("eliminar-formulario");
-
-            /*
-            Route::get('/', 'index')
-                ->name("lista-datos-clasificacion");
-
-            Route::get('/nuevo', 'nuevo');
-
-            Route::get('/editar/{id}', 'editar')
-                ->name("editar-dato-clasificacion");
-
-            Route::get('/eliminar', 'eliminar');
-
-            Route::get('/opciones/{idClassificationData}', 'options')
-                ->name("options-dato-clasificacion");
-
-            Route::get('/opciones/editar/{id}', 'editOption')
-                ->name("editar-option");
-
-            Route::post('/actualizar', 'actualizar')
-                ->name("actualizar-dato-clasificacion");
-
-            Route::post('/crear', 'crear')
-                ->name("crear-dato-clasificacion");
-
-            Route::post('/opciones/crear', 'createOption')
-                ->name("crear-options");
-
-            Route::post('/opciones/actualizar', 'updateOption')
-                ->name("actualizar-option");
-            */
         });
 
     // FORMULARIO -> AREAS:
@@ -222,5 +194,13 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::post('/create', 'create')
                 ->name("create-form-preguntas");
+        });
+
+    // FormProyectoClassificationData
+    Route::controller(FormProyectoClassificationDataController::class)
+        ->prefix("form-classification-data")
+        ->group(function () {
+            Route::post('/create', 'create')
+                ->name("create-form-classification-data");
         });
 });

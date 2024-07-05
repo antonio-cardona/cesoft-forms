@@ -1,4 +1,4 @@
-import { Droppable } from "@shopify/draggable";
+import { Droppable, Plugins } from "@shopify/draggable";
 import axios from "axios";
 
 jQuery(document).ready(() => {
@@ -7,6 +7,10 @@ jQuery(document).ready(() => {
         {
             draggable: ".item",
             dropzone: ".dropzone",
+            mirror: {
+                constrainDimensions: true,
+            },
+            plugins: [Plugins.ResizeMirror],
         }
     );
 

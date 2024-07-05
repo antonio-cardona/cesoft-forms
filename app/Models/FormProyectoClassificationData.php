@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Answer extends Model
+class FormProyectoClassificationData extends Model
 {
     public function form() : BelongsTo
     {

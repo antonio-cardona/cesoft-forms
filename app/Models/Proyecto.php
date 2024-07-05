@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Proyecto extends Model
@@ -18,5 +19,15 @@ class Proyecto extends Model
     public function forms(): HasMany
     {
         return $this->hasMany(Form::class);
+    }
+
+    public function proyectoClassificationData(): HasMany
+    {
+        return $this->hasMany(ProyectoClassificationData::class);
+    }
+
+    public function classificationData() : BelongsToMany
+    {
+        return $this->belongsToMany(ClassificationData::class, "proyecto_classification_data");
     }
 }

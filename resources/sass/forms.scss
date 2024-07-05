@@ -14,10 +14,10 @@
 
 .order-labels {
     height: 90px;
-    margin-bottom: 7px;
-    padding: 12px;
 }
 
 .drag-identificacion {
     padding: 12px;
 }
+
+.draggable-mirror { z-index: 99; }

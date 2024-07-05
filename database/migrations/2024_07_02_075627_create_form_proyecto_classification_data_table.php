@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('form_proyecto_classification_data', function (Blueprint $table) {
             $table->increments("id");
             $table->foreignIdFor(Form::class);
             $table->foreignIdFor(ProyectoClassificationData::class);
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('form_proyecto_classification_data');
     }
 };

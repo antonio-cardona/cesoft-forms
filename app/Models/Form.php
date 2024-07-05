@@ -39,8 +39,8 @@ class Form extends Model
         return $this->hasMany(FormPregunta::class);
     }
 
-    public function answers() : HasMany
+    public function formProyectoClassificationData() : HasMany
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(FormProyectoClassificationData::class);
     }
 }
