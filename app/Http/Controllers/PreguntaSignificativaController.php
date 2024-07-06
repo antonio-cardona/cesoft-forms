@@ -27,7 +27,8 @@ class PreguntaSignificativaController extends Controller
         return view('preguntas.lista', [
             "proyecto" => $area->proyecto,
             "area" => $area,
-            "preguntas" => $area->preguntas
+            "preguntas" => $area->preguntas,
+            "totalPreguntas" => count($area->preguntas)
         ]);
     }
 

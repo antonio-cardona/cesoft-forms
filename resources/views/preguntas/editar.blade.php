@@ -16,25 +16,31 @@
     </div>
 
     <div class="container">
-        <form id="form-actualizar-pregunta" action="{{ route('actualizar-pregunta') }}" method="POST">
-            @csrf
-            <input type="hidden" id="id_area" value="{{ $area->id }}" />
-            <input type="hidden" name="id" value="{{ $pregunta->id }}" />
-            <div class="row">
-                <div class="col-sm align-middle">
-                    <input type="text" class="form-control" id="texto" name="texto" placeholder="Pregunta"
-                        required value="{{ $pregunta->texto }}">
-                </div>
-                <div class="col-sm align-middle">
-                    <button id="btn-actualizar-pregunta" type="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Actualizar Pregunta
-                    </button>
-                    <button id="btn-cancelar" type="button" class="btn btn-secondary">
-                        <i class="fas fa-window-close"></i> Cancelar
-                    </button>
-                </div>
+        <div class="card">
+            <div class="card-header bg-info">Crear Nueva Área</div>
+
+            <div class="card-body">
+                <form id="form-actualizar-pregunta" action="{{ route('actualizar-pregunta') }}" method="POST">
+                    @csrf
+                    <input type="hidden" id="id_area" value="{{ $area->id }}" />
+                    <input type="hidden" name="id" value="{{ $pregunta->id }}" />
+                    <div class="row">
+                        <div class="col-sm align-middle">
+                            <input type="text" class="form-control" id="texto" name="texto" placeholder="Pregunta"
+                                required value="{{ $pregunta->texto }}">
+                        </div>
+                        <div class="col-sm align-middle">
+                            <button id="btn-actualizar-pregunta" type="button" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Actualizar Pregunta
+                            </button>
+                            <button id="btn-cancelar" type="button" class="btn btn-secondary">
+                                <i class="fas fa-window-close"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 @stop
 
