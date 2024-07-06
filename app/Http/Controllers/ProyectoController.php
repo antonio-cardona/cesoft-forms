@@ -7,6 +7,7 @@ use App\Models\Form;
 use App\Models\Proyecto;
 use App\Models\ProyectoClassificationData;
 use App\Models\ProyectoIdentificationData;
+use App\Models\ProyectoResearcher;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,7 +21,11 @@ class ProyectoController extends Controller
      */
     public function nuevo()
     {
-        return view('proyectos.nuevo');
+        $researchers = User::where("role", "INVESTIGADOR")->orderBy("name")->get();
+
+        return view('proyectos.nuevo', [
+            "researchers" => $researchers
+        ]);
     }
 
     /**
@@ -56,19 +61,28 @@ class ProyectoController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editar(Request $request, string $id)
+    public function editar(Request $request, string $idProyecto)
     {
-        $proyecto = Proyecto::find($id);
+        $proyecto = Proyecto::find($idProyecto);
+        $researchers = User::where("role", "INVESTIGADOR")->orderBy("name")->get();
+        $proyResearcher = ProyectoResearcher::where("proyecto_id", $idProyecto)->with("user")->first();
 
-        return view('proyectos.editar', ['proyecto' => $proyecto]);
+        $idProyectoResearcher = "";
+        $idCurrentResearcher = "";
+        if ($proyResearcher) {
+            $idProyectoResearcher = $proyResearcher->id;
+            $idCurrentResearcher = $proyResearcher->user->id;
+        }
+
+        return view('proyectos.editar', [
+            "proyecto" => $proyecto,
+            "researchers" => $researchers,
+            "idProyectoResearcher" => $idProyectoResearcher,
+            "idCurrentResearcher" => $idCurrentResearcher
+        ]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function crear(Request $request): RedirectResponse
+    public function crear(Request $request) : RedirectResponse
     {
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
@@ -77,15 +91,18 @@ class ProyectoController extends Controller
         $proyecto->objetivo = $request->input('objetivo');
         $proyecto->save();
 
-        return redirect('/admin/proyectos');
+        $idResearcher = $request->input('researcher_id');
+        if ($idResearcher) {
+            $proyectoResearcher = new ProyectoResearcher();
+            $proyectoResearcher->proyecto_id = $proyecto->id;
+            $proyectoResearcher->user_id = $idResearcher;
+            $proyectoResearcher->save();
+        }
+
+        return redirect(route("lista-proyectos"));
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function actualizar(Request $request): RedirectResponse
+    public function actualizar(Request $request) : RedirectResponse
     {
         $proyecto = Proyecto::find($request->input('id'));
         $proyecto->nombre = $request->input('nombre');
@@ -94,7 +111,24 @@ class ProyectoController extends Controller
         $proyecto->objetivo = $request->input('objetivo');
         $proyecto->save();
 
-        return redirect('/admin/proyectos');
+        $idProyectoResearcher = $request->input('id_proyecto_researcher');
+        $idResearcher = $request->input('researcher_id');
+        if ($idProyectoResearcher) {
+            if ($idResearcher && $idResearcher != "0") {
+                $proyectoResearcher = ProyectoResearcher::find($idProyectoResearcher);
+                $proyectoResearcher->user_id = $idResearcher;
+                $proyectoResearcher->save();
+            } else {
+                ProyectoResearcher::find($idProyectoResearcher)->delete();
+            }
+        } else if ($idResearcher && $idResearcher != "0") {
+            $proyectoResearcher = new ProyectoResearcher();
+            $proyectoResearcher->proyecto_id = $proyecto->id;
+            $proyectoResearcher->user_id = $idResearcher;
+            $proyectoResearcher->save();
+        }
+
+        return redirect(route("lista-proyectos"));
     }
 
     public function publicar(Request $request, string $idProyecto)

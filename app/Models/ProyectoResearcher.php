@@ -12,7 +12,7 @@ class ProyectoResearcher extends Model
         return $this->belongsTo(Proyecto::class);
     }
 
-    public function researcher(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

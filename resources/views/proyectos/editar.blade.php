@@ -15,6 +15,7 @@
         <form id="form-actualizar-proyecto" action="{{ route('actualizar-proyecto') }}" method="POST">
             @csrf
             <input type="hidden" name="id" value="{{ $proyecto->id }}">
+            <input type="hidden" name="id_proyecto_researcher" value="{{ $idProyectoResearcher }}">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -26,7 +27,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label for="nombre">Fecha Final</label>
-                        <input class="form-control" id="fecha_final" name="fecha_final" required value="{{ $proyecto->fecha_final }}">
+                        <input class="form-control" id="fecha_final" name="fecha_final" required
+                            value="{{ $proyecto->fecha_final }}">
                     </div>
                 </div>
             </div>
@@ -47,11 +49,32 @@
             </div>
 
             <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="researcher_id">Investigador Asignado</label>
+                        <select id="researcher_id" name="researcher_id" class="custom-select">
+                            <option value="0">Selecciona un Investigador</option>
+                            @foreach ($researchers as $researcher)
+                                @php
+                                    $selected = "";
+                                    if ($idCurrentResearcher == $researcher->id) {
+                                        $selected = "selected=true";
+                                    }
+                                @endphp
+                                <option value="{{ $researcher->id }}" {{ $selected }}>{{ $researcher->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <button id="btn-actualizar-proyecto" type="button" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Actualizar Proyecto</button>
-                        <button id="btn-cancelar" type="button" class="btn btn-secondary"><i class="fas fa-window-close"></i>
+                        <button id="btn-cancelar" type="button" class="btn btn-secondary"><i
+                                class="fas fa-window-close"></i>
                             Cancelar</button>
                     </div>
                 </div>

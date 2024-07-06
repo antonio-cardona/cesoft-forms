@@ -16,6 +16,6 @@ jQuery(document).ready(() => {
     });
 
     jQuery("#btn-cancelar").on("click", () => {
-        location.href = "/admin/proyectos";
+        location.href = route("lista-proyectos");
     });
 });

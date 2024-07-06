@@ -46,6 +46,20 @@
             </div>
 
             <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="researcher_id">Investigador Asignado</label>
+                        <select id="researcher_id" name="researcher_id" class="custom-select">
+                            <option value="0">Selecciona un Investigador</option>
+                            @foreach ($researchers as $researcher)
+                                <option value="{{ $researcher->id }}">{{ $researcher->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
                 <div class="col">
                     <div class="form-group">
                         <button id="btn-crear-proyecto" type="button" class="btn btn-primary">
