@@ -18,9 +18,8 @@
         <table id="tabla-users" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
-                    <th width="30%">Nombre</th>
-                    <th width="30%">Email</th>
+                    <th width="35%">Nombre</th>
+                    <th width="35%">Email</th>
                     <th width="15%">Rol</th>
                     <th width="15%">Acciones</th>
                 </tr>
@@ -28,7 +27,6 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
@@ -50,7 +48,6 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Rol</th>

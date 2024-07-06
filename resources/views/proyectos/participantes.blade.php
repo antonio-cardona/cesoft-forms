@@ -31,29 +31,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modal-despublicar-proyecto" tabindex="-1" aria-labelledby="modal-despublicar-proyecto"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Desactivar Proyecto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Confirma que desea desactivar el proyecto <strong id="modal-nombre-proyecto"
-                            class="text-primary"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a id="btn-confirmar-despublicacion" role="button" class="btn btn-primary" href="">
-                        Si
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container">
         <div class="card mb-5">
@@ -99,7 +76,7 @@
                             <div class="btn-toolbar" role="toolbar" aria-label="">
 
                                 <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
-                                    <a role="button" class="btn btn-outline-danger btn-sm btn-ans" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-danger btn-sm btn-ans" data-toggle="tooltip"
                                         data-placement="top" title="Remover al participante del proyecto"
                                         href="{{ route("eliminar-formulario", [$form->id]) }}">
                                         <i class=" fas fa-minus"></i> Remover participante

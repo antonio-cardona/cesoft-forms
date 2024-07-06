@@ -79,22 +79,22 @@
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group mr-2" role="group" aria-label="Diseño Formulario">
-                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Áreas de Nivel Superior"
                                         href="/admin/areas/{{ $proyecto->id }}"">
                                         <i class=" fas fa-plus"></i> ANS
                                     </a>
-                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Datos de Clasificación"
                                         href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-info-circle"></i>
                                     </a>
-                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Participantes del Proyecto"
                                         href="{{ route('participantes-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-users-cog"></i>
                                     </a>
-                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="modal"
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans" data-toggle="modal"
                                         data-placement="top" title="Publicar proyecto"
                                         data-target="{{ $proyecto->status == "SIN-PUBLICAR" ? "#modal-publicar-proyecto" : "#modal-despublicar-proyecto" }}"
                                         data-proyecto-nombre="{{ $proyecto->nombre }}"
@@ -107,12 +107,12 @@
                                     </a>
                                 </div>
                                 <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
-                                    <a role="button" class="btn btn-outline-primary btn-sm btn-ans" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Editar proyecto"
                                         href="/admin/proyectos/editar/{{ $proyecto->id }}"">
                                         <i class=" fas fa-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
                                         data-placement="top" title="Eliminar Proyecto">
                                         <i class="fas fa-minus"></i>
                                     </button>
