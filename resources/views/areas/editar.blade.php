@@ -14,25 +14,33 @@
     </div>
 
     <div class="container">
-        <form id="form-actualizar-area" action="{{ route('actualizar-area') }}" method="POST">
-            @csrf
-            <input type="hidden" id="id_proyecto" value="{{ $proyecto->id }}" />
-            <input type="hidden" name="id" value="{{ $area->id }}" />
-            <div class="row">
-                <div class="col-sm align-middle">
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Área"
-                        required value="{{ $area->nombre }}">
-                </div>
-                <div class="col-sm align-middle">
-                    <button id="btn-actualizar-area" type="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Actualizar Área
-                    </button>
-                    <button id="btn-cancelar" type="button" class="btn btn-secondary">
-                        <i class="fas fa-window-close"></i> Cancelar
-                    </button>
-                </div>
+        <div class="card">
+            <div class="card-header bg-info">Actualizar Área</div>
+
+            <div class="card-body">
+                <form id="form-actualizar-area" action="{{ route('actualizar-area') }}" method="POST">
+                    @csrf
+                    <input type="hidden" id="id_proyecto" value="{{ $proyecto->id }}" />
+                    <input type="hidden" name="id" value="{{ $area->id }}" />
+                    <div class="row">
+                        <div class="col-sm align-middle">
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                placeholder="Nombre del Área" required value="{{ $area->nombre }}">
+                        </div>
+                        <div class="col-sm align-middle">
+                            <button id="btn-actualizar-area" type="button" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Actualizar Área
+                            </button>
+                            <button id="btn-cancelar" type="button" class="btn btn-secondary">
+                                <i class="fas fa-window-close"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+
     </div>
 @stop
 

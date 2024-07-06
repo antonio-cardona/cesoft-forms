@@ -31,7 +31,8 @@ class AreaNivelSuperiorController extends Controller
 
         return view('areas.lista', [
             "proyecto" => $proyecto,
-            "areas" => $areas
+            "areas" => $areas,
+            "totalAreas" => count($areas)
         ]);
     }
 

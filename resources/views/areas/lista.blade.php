@@ -14,59 +14,58 @@
     </div>
 
     <div class="container">
-        <form id="form-crear-area" action="{{ route('crear-area') }}" method="POST">
-            @csrf
-            <input type="hidden" name="proyecto_id" value="{{ $proyecto->id }}" />
-            <div class="row">
-                <div class="col-sm align-middle">
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Área"
-                        required>
-                </div>
-                <div class="col-sm align-middle">
-                    <button id="btn-crear-area" type="button" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Crear Área
-                    </button>
+        @if ($totalAreas < 20)
+            <div class="card">
+                <div class="card-header bg-info">Crear Nueva Área</div>
+
+                <div class="card-body">
+                    <form id="form-crear-area" action="{{ route('crear-area') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="proyecto_id" value="{{ $proyecto->id }}" />
+
+                        <div class="row">
+                            <div class="col-sm-5 align-middle">
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    placeholder="Nombre del Área" required>
+                            </div>
+                            <div class="col-sm-7 align-middle">
+                                <button id="btn-crear-area" type="button" class="btn btn-info">
+                                    <i class="fas fa-plus"></i> Crear Área
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
-
-        <br/>
+        @endif
+        <br />
 
         <table id="tabla-ans" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="5%">ID</th>
                     <th width="60%">Área</th>
-                    <th width="35%">Acciones</th>
+                    <th width="40%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($areas as $area)
                     <tr>
-                        <td>{{ $area->id }}</td>
                         <td>{{ $area->nombre }}</td>
-                        <td class="align-middle">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Preguntas Significativas"
-                                            href="/admin/preguntas/{{ $area->id }}"">
-                                            <i class="fas fa-plus"></i> Preguntas
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Editar Area de Nivel Superior"
-                                            href="/admin/areas/editar/{{ $area->id }}"">
-                                            <i class=" fas fa-edit"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Eliminar Área"><i
-                                                class="fas fa-minus"></i></button>
-                                    </div>
+                        <td>
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group" role="group" aria-label="Diseño Formulario">
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
+                                        data-toggle="tooltip" data-placement="top" title="Preguntas Significativas"
+                                        href="/admin/preguntas/{{ $area->id }}"">
+                                        <i class="fas fa-plus"></i> Preguntas
+                                    </a>
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
+                                        data-toggle="tooltip" data-placement="top" title="Editar Area de Nivel Superior"
+                                        href="/admin/areas/editar/{{ $area->id }}"">
+                                        <i class=" fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Eliminar Área"><i class="fas fa-minus"></i></button>
                                 </div>
                             </div>
                         </td>
@@ -76,7 +75,6 @@
             <tfoot>
                 <tr>
                     <th>Nombre</th>
-                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
