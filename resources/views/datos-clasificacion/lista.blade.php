@@ -7,10 +7,6 @@
 @stop
 
 @section('content')
-    <div id="alert-error" class="alert alert-danger" style="display: none" role="alert">
-        Debes llenar el formulario.
-    </div>
-
     <div class="container">
         <div class="card mb-5">
             <div class="card-header bg-info">Crear Nuevo Dato de Clasificación</div>
@@ -20,8 +16,8 @@
                     @csrf
                     <div class="row">
                         <div class="col-sm align-middle">
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Dato de Clasificación"
-                                required>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                placeholder="Nombre del Dato de Clasificación" required>
                         </div>
                         <div class="col-sm align-middle">
                             <button id="btn-crear-dato-clasificacion" type="button" class="btn btn-info">
@@ -46,40 +42,41 @@
                     <tr>
                         <td>{{ $cData->nombre }}</td>
                         <td class="align-middle">
-                            <a role="button" class="btn btn-primary btn-sm btn-ans"
-                                data-toggle="tooltip" data-placement="top" title="Opciones de Respuesta"
-                                href="{{ route("options-dato-clasificacion", [$cData->id]) }}">
+                            <a role="button" class="btn btn-primary btn-sm btn-ans" data-toggle="tooltip"
+                                data-placement="top" title="Opciones de Respuesta"
+                                href="{{ route('options-dato-clasificacion', [$cData->id]) }}">
                                 <i class="fas fa-plus"></i> Opciones de respuesta
                             </a>
-                            <span class="badge badge-success ml-2 p-2" data-toggle="tooltip" data-placement="top" title="{{ count($cData->options) }} Opciones de Respuesta">{{ count($cData->options) }}</span>
+                            <span class="badge badge-success ml-2 p-2" data-toggle="tooltip" data-placement="top"
+                                title="{{ count($cData->options) }} Opciones de Respuesta">{{ count($cData->options) }}</span>
                         </td>
                         <td class="align-middle">
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group" role="group" aria-label="">
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
-                                        data-toggle="tooltip" data-placement="top" title="Editar Dato de Clasificación"
-                                        href="{{ route("editar-dato-clasificacion", [$cData->id]) }}">
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                        data-placement="top" title="Editar Dato de Clasificación"
+                                        href="{{ route('editar-dato-clasificacion', [$cData->id]) }}">
                                         <i class=" fas fa-edit"></i>
                                     </a>
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
                                         data-placement="top" title="Eliminar Dato de Clasificación">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Dato de Clasificación</th>
-                    <th>Opciones de Respuesta</th>
-                    <th>Acciones</th>
-                </tr>
-            </tfoot>
-        </table>
+    </div>
+    </td>
+    </tr>
+    @endforeach
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Dato de Clasificación</th>
+            <th>Opciones de Respuesta</th>
+            <th>Acciones</th>
+        </tr>
+    </tfoot>
+    </table>
     </div>
 @stop
 

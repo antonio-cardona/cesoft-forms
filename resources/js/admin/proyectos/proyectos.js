@@ -4,24 +4,24 @@ jQuery(document).ready(() => {
     jQuery('[data-toggle="tooltip"]').tooltip();
 
     jQuery("#btn-nuevo-proyecto").on("click", () => {
-        location.href = "/admin/proyectos/nuevo";
+        location.href = route("nuevo-proyecto");
     });
 
-    $("#modal-publicar-proyecto").on("show.bs.modal", function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var nombreProyecto = button.data("proyecto-nombre");
-        var urlPublicacion = button.data("url");
-        var modal = $(this);
-        modal.find("#modal-nombre-proyecto").text(nombreProyecto);
-        modal.find("#btn-confirmar-publicacion").attr("href", urlPublicacion);
-    });
+    jQuery("button.btn-publicar-proyecto").on("click", (event) => {
+        var nombreProyecto = jQuery(event.delegateTarget).data("proyecto-nombre");
+        var targetLabel = jQuery(event.delegateTarget).data("target-label");
+        var urlPublicacion = jQuery(event.delegateTarget).data("url");
 
-    $("#modal-despublicar-proyecto").on("show.bs.modal", function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var nombreProyecto = button.data("proyecto-nombre");
-        var urlDesPublicacion = button.data("url");
-        var modal = $(this);
-        modal.find("#modal-nombre-proyecto").text(nombreProyecto);
-        modal.find("#btn-confirmar-despublicacion").attr("href", urlDesPublicacion);
+        Swal.fire({
+            title: `¿Confirma que desea ${targetLabel} el proyecto "${nombreProyecto}?"`,
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Si",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = urlPublicacion;
+            }
+        });
     });
 });

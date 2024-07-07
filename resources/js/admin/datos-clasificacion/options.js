@@ -4,11 +4,14 @@ jQuery(document).ready(() => {
     jQuery('[data-toggle="tooltip"]').tooltip();
 
     jQuery("#btn-crear-opcion-respuesta").on("click", () => {
-        if (jQuery("#nombre").val() == "") {
-            jQuery("#alert-error").show();
+        if (jQuery("#texto").val() == "" || jQuery("#orden").val() == "") {
+            Swal.fire({
+                title: "Error!",
+                text: "Debes llenar el formulario.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
         } else {
-            jQuery("#alert-error").hide();
-
             jQuery("#form-crear-opcion-respuesta").submit();
         }
     });

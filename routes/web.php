@@ -48,7 +48,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'proyectos')
                 ->name("lista-proyectos");
 
-            Route::get('/nuevo', 'nuevo');
+            Route::get('/nuevo', 'nuevo')
+                ->name("nuevo-proyecto");
 
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-proyecto");
@@ -100,7 +101,8 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(PreguntaSignificativaController::class)
         ->prefix("admin/preguntas")
         ->group(function () {
-            Route::get('/{idArea}', 'preguntas');
+            Route::get('/{idArea}', 'preguntas')
+                ->name("lista-preguntas");
 
             Route::post('/crear', 'crear')
                 ->name("crear-pregunta");

@@ -7,10 +7,6 @@
 @stop
 
 @section('content')
-    <div id="alert-error" class="alert alert-danger" style="display: none" role="alert">
-        Debes llenar el formulario.
-    </div>
-
     <div class="container">
         <div class="card mb-5">
             <div class="card-header bg-info">Editar Dato de Clasificación</div>

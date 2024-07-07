@@ -5,10 +5,13 @@ jQuery(document).ready(() => {
 
     jQuery("#btn-crear-dato-clasificacion").on("click", () => {
         if (jQuery("#nombre").val() == "") {
-            jQuery("#alert-error").show();
+            Swal.fire({
+                title: "Error!",
+                text: "Debes llenar el formulario.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
         } else {
-            jQuery("#alert-error").hide();
-
             jQuery("#form-crear-dato-clasificacion").submit();
         }
     });

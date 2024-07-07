@@ -94,17 +94,21 @@
                                         href="{{ route('participantes-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-users-cog"></i>
                                     </a>
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans" data-toggle="modal"
-                                        data-placement="top" title="Publicar proyecto"
-                                        data-target="{{ $proyecto->status == "SIN-PUBLICAR" ? "#modal-publicar-proyecto" : "#modal-despublicar-proyecto" }}"
+                                    <button
+                                        class="btn btn-primary btn-sm btn-ans btn-publicar-proyecto"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="{{ $proyecto->status == "SIN-PUBLICAR" ? "Publicar" : "Desactivar" }} proyecto"
+                                        data-target-label="{{ $proyecto->status == "SIN-PUBLICAR" ? "publicar" : "desactivar" }}"
                                         data-proyecto-nombre="{{ $proyecto->nombre }}"
-                                        data-url="{{ $proyecto->status == "SIN-PUBLICAR" ? route('publicar-proyecto', [$proyecto->id]) : route('despublicar-proyecto', [$proyecto->id]) }}">
+                                        data-url="{{ $proyecto->status == "SIN-PUBLICAR" ? route('publicar-proyecto', [$proyecto->id]) : route('despublicar-proyecto', [$proyecto->id]) }}"
+                                    >
                                         @if ($proyecto->status == "SIN-PUBLICAR")
                                             <i class=" fas fa-upload"></i>
                                         @else
                                             <i class=" fas fa-download"></i>
                                         @endif
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
                                     <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"

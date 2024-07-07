@@ -11,10 +11,6 @@
 @stop
 
 @section('content')
-    <div id="alert-error" class="alert alert-danger" style="display: none" role="alert">
-        Debes llenar el formulario.
-    </div>
-
     <div class="container">
         @if ($totalPreguntas < 10)
             <div class="card mb-5">

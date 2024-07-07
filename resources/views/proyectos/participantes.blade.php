@@ -8,30 +8,6 @@
 @stop
 
 @section('content')
-    <div class="modal fade" id="modal-publicar-proyecto" tabindex="-1" aria-labelledby="modal-publicar-proyecto"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Publicar Proyecto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Confirma que desea publicar el proyecto <strong id="modal-nombre-proyecto"
-                            class="text-primary"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a id="btn-confirmar-publicacion" role="button" class="btn btn-primary" href="">
-                        Si
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
         <div class="card mb-5">
             <div class="card-header bg-info">Participantes Disponibles</div>

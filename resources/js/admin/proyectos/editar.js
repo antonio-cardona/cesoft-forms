@@ -6,11 +6,14 @@ jQuery(document).ready(() => {
     });
 
     jQuery("#btn-actualizar-proyecto").on("click", () => {
-        if (jQuery("#nombre").val() == "") {
-            jQuery("#alert-error").show();
+        if (jQuery("#nombre").val() == "" || jQuery("#descripcion").val() == "") {
+            Swal.fire({
+                title: "Error!",
+                text: "Debes llenar el formulario. El nombre y la descripción son obligatorios.",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
         } else {
-            jQuery("#alert-error").hide();
-
             jQuery("#form-actualizar-proyecto").submit();
         }
     });
