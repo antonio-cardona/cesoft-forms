@@ -37,10 +37,10 @@
 
                     <div class="row mt-4">
                         <div class="col-sm d-flex d-align-items-center justify-content-center">
-                            <button id="btn-actualizar-opcion-respuesta" type="button" class="btn btn-primary mx-3">
+                            <button id="btn-actualizar-opcion-respuesta" type="button" class="btn btn-info mx-1">
                                 <i class="fas fa-plus"></i> Actualizar Opción
                             </button>
-                            <a id="btn-cancelar" role="button" class="btn btn-secondary mx-3" href="{{ route("options-dato-clasificacion", [$classificationData->id]) }}">
+                            <a id="btn-cancelar" role="button" class="btn btn-secondary mx-1" href="{{ route("options-dato-clasificacion", [$classificationData->id]) }}">
                                 <i class="fas fa-window-close"></i> Cancelar
                             </a>
                         </div>

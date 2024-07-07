@@ -10,7 +10,7 @@ class ClassificationData extends Model
 {
     public function options(): HasMany
     {
-        return $this->hasMany(ClassificationOption::class);
+        return $this->hasMany(ClassificationOption::class)->orderBy("orden");
     }
 
     public function proyectos() : BelongsToMany

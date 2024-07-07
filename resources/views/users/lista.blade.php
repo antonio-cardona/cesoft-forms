@@ -34,7 +34,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-primary btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Editar el usuario"
                                             href="{{ route('editar-user', [$user->id]) }}"">
                                             <i class=" fas fa-edit"></i> Editar

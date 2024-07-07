@@ -53,7 +53,7 @@
                         <td>{{ $pregunta->texto }}</td>
                         <td class="align-middle">
                             <div class="btn-toolbar" role="toolbar" aria-label="">
-                                <div class="btn-group" role="group" aria-label="Diseño Formulario">
+                                <div class="btn-group" role="group" aria-label="">
                                     <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
                                         data-toggle="tooltip" data-placement="top" title="Editar la Pregunta"
                                         href="/admin/preguntas/editar/{{ $pregunta->id }}"">

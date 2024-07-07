@@ -48,33 +48,28 @@
         <table id="table-options-classification-data" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th width="5%">ID</th>
-                    <th width="60%">Opción de Respuesta</th>
                     <th width="20%">Orden</th>
-                    <th width="15%">Acciones</th>
+                    <th width="60%">Opción de Respuesta</th>
+                    <th width="20%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($options as $option)
                     <tr>
-                        <td>{{ $option->id }}</td>
-                        <td>{{ $option->texto }}</td>
                         <td>{{ $option->orden }}</td>
+                        <td>{{ $option->texto }}</td>
                         <td class="align-middle">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <a role="button" class="btn btn-outline-primary btn-sm btn-ans"
-                                            data-toggle="tooltip" data-placement="top" title="Editar Dato de Clasificación"
-                                            href="{{ route("editar-option", [$option->id]) }}">
-                                            <i class=" fas fa-edit"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Eliminar Dato de Clasificación"><i
-                                                class="fas fa-minus"></i></button>
-                                    </div>
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group" role="group" aria-label="">
+                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                        data-placement="top" title="Editar Dato de Clasificación"
+                                        href="{{ route('editar-option', [$option->id]) }}">
+                                        <i class=" fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Eliminar Dato de Clasificación">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -83,9 +78,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>ID</th>
-                    <th>Opción de Respuesta</th>
                     <th>Orden</th>
+                    <th>Opción de Respuesta</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>
