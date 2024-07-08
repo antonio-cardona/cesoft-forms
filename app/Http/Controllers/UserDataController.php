@@ -10,33 +10,25 @@ use Illuminate\Support\Facades\Auth;
 
 class UserDataController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function perfil()
     {
-        $paises = Country::all()->sortBy("nombre");
-        $ciudades = $paises->first()->cities->sortBy("nombre");
+        $user = Auth::user();
+        $countries = Country::all()->sortBy("nombre");
 
         return view(
             'user-data.perfil',
             [
-                "paises" => $paises,
-                "ciudades" => $ciudades
+                "countries" => $countries,
+                "idCurrentCountry" => empty($user->country_id) ? "0" : $user->country_id,
+                "user" => $user
             ]
         );
     }
 
     public function myForms()
     {
-        //$paises = Country::all()->sortBy("nombre");
-        //$ciudades = $paises->first()->cities->sortBy("nombre");
         $user = Auth::user();
-
         $forms = Form::whereBelongsTo($user)->get();
-
 
         return view(
             'user-data.mis-formularios',
@@ -169,9 +161,3 @@ class UserDataController extends Controller
     }
 
 }
-
-
-
-
-
-

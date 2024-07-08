@@ -35,6 +35,7 @@ export default defineConfig({
                 'resources/js/user/form-area.js',
                 'resources/js/user/form-preguntas.js',
                 'resources/js/user/form-classification-data.js',
+                'resources/js/user/perfil.js',
             ],
             refresh: true,
         }),

@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->string("id", "2");
+            $table->increments("id");
             $table->string("nombre", 100);
-            $table->primary('id');
         });
     }
 

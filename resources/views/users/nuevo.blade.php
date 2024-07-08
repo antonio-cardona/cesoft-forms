@@ -22,13 +22,26 @@
                                     placeholder="Nombre del nuevo usuario" required>
                             </div>
                         </div>
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <label for="country_id">Nacionalidad</label>
+
+                                <select id="country_id" name="country_id" class="custom-select">
+                                    <option value="0">Selecciona un País</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}">
+                                            {{ $country->nombre }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm">

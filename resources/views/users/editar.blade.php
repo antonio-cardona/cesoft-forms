@@ -15,7 +15,8 @@
                 <form id="form-actualizar-user" action="{{ route('actualizar-user') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="{{ $user->id }}">
-                    <input type="hidden" name="role_user" id="role_user" value="{{ $user->role }}">
+                    <input type="hidden" id="role_user" value="{{ $user->role }}">
+                    <input type="hidden" id="country_id_user" value="{{ $user->country_id }}">
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-group">
@@ -24,14 +25,27 @@
                                     required value="{{ $user->name }}">
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-sm">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder=""
                                     required value="{{ $user->email }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="country_id">Nacionalidad</label>
+
+                                <select id="country_id" name="country_id" class="custom-select">
+                                    <option value="0">Selecciona un País</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}">
+                                            {{ $country->nombre }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm">

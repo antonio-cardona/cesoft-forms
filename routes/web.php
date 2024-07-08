@@ -136,6 +136,12 @@ Route::middleware(['auth'])->group(function () {
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-user");
+
+            Route::post('/ajax-update', 'ajaxUpdate')
+                ->name("ajax-update-user");
+
+            Route::post('/ajax-update-password', 'ajaxUpdatePassword')
+                ->name("ajax-update-password");
         });
 
     // DATOS DE CLASIFICACIÓN:
