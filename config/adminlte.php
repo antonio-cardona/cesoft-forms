@@ -312,18 +312,14 @@ return [
             'text' => 'search',
         ],*/
         [
-            'header' => 'SUPER ADMINISTRACIÓN',
-            'can' => 'any-super-admin'
-        ],
-        [
-            'text' => 'Datos de Clasificación',
-            'url' => 'admin/datos-clasificacion',
-            'icon' => 'fas fa-fw fa-info-circle',
-            'can' => 'any-super-admin'
-        ],
-        [
             'header' => 'ADMINISTRACIÓN',
             'can' => 'any-admin'
+        ],
+        [
+            'text' => 'Usuarios',
+            'url' => 'admin/usuarios',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'can' => 'any-users'
         ],
         [
             'text' => 'Proyectos',
@@ -338,10 +334,26 @@ return [
             'can' => 'any-users'
         ],
         [
-            'text' => 'Usuarios',
-            'url' => 'admin/usuarios',
-            'icon' => 'fas fa-fw fa-users-cog',
-            'can' => 'any-users'
+            'header' => 'REPORTES',
+            'can' => 'any-admin'
+        ],
+        [
+            'text' => 'Reporte Alpha',
+            'url' => 'admin/reportes/reporte-alpha',
+            'icon' => 'fas fa-fw fa-table',
+            'can' => 'any-admin'
+        ],
+        [
+            'text' => 'Reporte Betha',
+            'url' => 'admin/reportes/reporte-betha',
+            'icon' => 'fas fa-fw fa-table',
+            'can' => 'any-admin'
+        ],
+        [
+            'text' => 'Reporte Gamma',
+            'url' => 'admin/reportes/reporte-gamma',
+            'icon' => 'fas fa-fw fa-table',
+            'can' => 'any-admin'
         ],
         [
             'header' => 'FORMULARIOS',
@@ -349,19 +361,21 @@ return [
         [
             'text' => 'Mis Formularios',
             'url' => 'usuario/mis-formularios',
-            'icon' => 'fas fa-fw fa-clipboard',
-            'can' => 'mis-formularios'
+            'icon' => 'fas fa-fw fa-clipboard'
         ],
-        ['header' => 'account_settings'],
+        [
+            'header' => 'UTILIDADES'
+        ],
+        [
+            'text' => 'Datos de Clasificación',
+            'url' => 'admin/datos-clasificacion',
+            'icon' => 'fas fa-fw fa-info-circle',
+            'can' => 'any-super-admin'
+        ],
         [
             'text' => 'profile',
             'url' => 'usuario/perfil',
             'icon' => 'fas fa-fw fa-address-card',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'usuarios/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
     ],
 
