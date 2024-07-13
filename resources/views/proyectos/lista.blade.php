@@ -7,57 +7,16 @@
 @stop
 
 @section('content')
-    <div class="modal fade" id="modal-publicar-proyecto" tabindex="-1" aria-labelledby="modal-publicar-proyecto" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Publicar Proyecto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Confirma que desea publicar el proyecto <strong id="modal-nombre-proyecto" class="text-primary"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a id="btn-confirmar-publicacion" role="button" class="btn btn-primary"
-                        href="">
-                        Si
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal-despublicar-proyecto" tabindex="-1" aria-labelledby="modal-despublicar-proyecto" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Desactivar Proyecto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Confirma que desea desactivar el proyecto <strong id="modal-nombre-proyecto" class="text-primary"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <a id="btn-confirmar-despublicacion" role="button" class="btn btn-primary"
-                        href="">
-                        Si
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm"></div>
         </div>
-        <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary my-3" style="margin-bottom: 12px;">
-            Crear nuevo Proyecto
-        </button>
+
+        @if (Gate::allows('any-admin'))
+            <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary my-3" style="margin-bottom: 12px;">
+                Crear nuevo Proyecto
+            </button>
+        @endif
 
         <table id="tabla-proyectos" class="table table-striped table-bordered" style="width:100%">
             <thead>
@@ -94,33 +53,33 @@
                                         href="{{ route('participantes-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-users-cog"></i>
                                     </a>
-                                    <button
-                                        class="btn btn-primary btn-sm btn-ans btn-publicar-proyecto"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="{{ $proyecto->status == "SIN-PUBLICAR" ? "Publicar" : "Desactivar" }} proyecto"
-                                        data-target-label="{{ $proyecto->status == "SIN-PUBLICAR" ? "publicar" : "desactivar" }}"
+                                    <button class="btn btn-primary btn-sm btn-ans btn-publicar-proyecto"
+                                        data-toggle="tooltip" data-placement="top"
+                                        title="{{ $proyecto->status == 'SIN-PUBLICAR' ? 'Publicar' : 'Desactivar' }} proyecto"
+                                        data-target-label="{{ $proyecto->status == 'SIN-PUBLICAR' ? 'publicar' : 'desactivar' }}"
                                         data-proyecto-nombre="{{ $proyecto->nombre }}"
-                                        data-url="{{ $proyecto->status == "SIN-PUBLICAR" ? route('publicar-proyecto', [$proyecto->id]) : route('despublicar-proyecto', [$proyecto->id]) }}"
-                                    >
-                                        @if ($proyecto->status == "SIN-PUBLICAR")
+                                        data-url="{{ $proyecto->status == 'SIN-PUBLICAR' ? route('publicar-proyecto', [$proyecto->id]) : route('despublicar-proyecto', [$proyecto->id]) }}">
+                                        @if ($proyecto->status == 'SIN-PUBLICAR')
                                             <i class=" fas fa-upload"></i>
                                         @else
                                             <i class=" fas fa-download"></i>
                                         @endif
                                     </button>
                                 </div>
-                                <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Editar proyecto"
-                                        href="/admin/proyectos/editar/{{ $proyecto->id }}"">
-                                        <i class=" fas fa-edit"></i>
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                        data-placement="top" title="Eliminar Proyecto">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
+
+                                @if (Gate::allows('any-admin'))
+                                    <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
+                                        <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                            data-placement="top" title="Editar proyecto"
+                                            href="/admin/proyectos/editar/{{ $proyecto->id }}"">
+                                            <i class=" fas fa-edit"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                            data-placement="top" title="Eliminar Proyecto">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
                         </td>
                     </tr>

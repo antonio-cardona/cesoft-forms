@@ -24,20 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Gate::define('any-proyectos', function (User $user) {
-            return in_array(
-                $user->role,
-                ["SUPER", "ADMINISTRADOR"]
-            );
-        });
-
-        Gate::define('any-users', function (User $user) {
-            return in_array(
-                $user->role,
-                ["SUPER", "ADMINISTRADOR"]
-            );
-        });
-
         Gate::define('any-admin', function (User $user) {
             return in_array(
                 $user->role,
@@ -45,10 +31,10 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        Gate::define('mis-formularios', function (User $user) {
+        Gate::define('any-investigador', function (User $user) {
             return in_array(
                 $user->role,
-                ["SUPER", "ADMINISTRADOR", "INVESTIGADOR", "PARTICIPANTE"]
+                ["SUPER", "ADMINISTRADOR", "INVESTIGADOR"]
             );
         });
 

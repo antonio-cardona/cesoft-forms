@@ -48,9 +48,10 @@
                             <div class="form-group">
                                 <label for="role">Rol</label>
                                 <select class="custom-select" id="role" name="role">
-                                    <option value="PARTICIPANTE">Participante</option>
-                                    <option value="INVESTIGADOR">Investigador</option>
-                                    <option value="ADMINISTRADOR">Administrador</option>
+                                    @foreach ($roles as $roleValue => $role)
+                                        <option value="{{ $roleValue }}">
+                                            {{ $role }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

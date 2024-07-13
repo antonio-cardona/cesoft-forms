@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -20,20 +21,40 @@ class UsersController extends Controller
     public function nuevo()
     {
         $countries = Country::all()->sortBy("nombre");
+        $roles = [];
+
+        switch (Auth::user()->role) {
+            case "SUPER":
+                $roles = [
+                    "PARTICIPANTE" => "Participante",
+                    "INVESTIGADOR" => "Investigador",
+                    "ADMINISTRADOR" => "Administrador"
+                ];
+                break;
+
+            case "ADMINISTRADOR":
+                $roles = [
+                    "PARTICIPANTE" => "Participante",
+                    "INVESTIGADOR" => "Investigador"
+                ];
+                break;
+
+            case "INVESTIGADOR":
+                $roles = [
+                    "PARTICIPANTE" => "Participante"
+                ];
+                break;
+        }
 
         return view(
             'users.nuevo',
             [
-                "countries" => $countries
+                "countries" => $countries,
+                "roles" => $roles
             ]
         );
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function detalle(Request $request, string $id)
     {
         $proyecto = Proyecto::find($id);
@@ -45,11 +66,6 @@ class UsersController extends Controller
         ]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function users()
     {
         $users = User::all()->sortBy("id");
@@ -60,21 +76,42 @@ class UsersController extends Controller
         );
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function editar(Request $request, string $id)
     {
         $user = User::find($id);
         $countries = Country::all()->sortBy("nombre");
 
+        $roles = [];
+
+        switch (Auth::user()->role) {
+            case "SUPER":
+                $roles = [
+                    "PARTICIPANTE" => "Participante",
+                    "INVESTIGADOR" => "Investigador",
+                    "ADMINISTRADOR" => "Administrador"
+                ];
+                break;
+
+            case "ADMINISTRADOR":
+                $roles = [
+                    "PARTICIPANTE" => "Participante",
+                    "INVESTIGADOR" => "Investigador"
+                ];
+                break;
+
+            case "INVESTIGADOR":
+                $roles = [
+                    "PARTICIPANTE" => "Participante"
+                ];
+                break;
+        }
+
         return view(
             'users.editar',
             [
                 "user" => $user,
-                "countries" => $countries
+                "countries" => $countries,
+                "roles" => $roles
             ]
         );
     }

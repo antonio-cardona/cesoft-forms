@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => 'P<b>i</b>RS',
+    'logo' => '',
     //'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img' => 'imgs/logo-cesoft.png',
+    'logo_img' => 'imgs/logo-pirs.png',
     'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -313,47 +313,47 @@ return [
         ],*/
         [
             'header' => 'ADMINISTRACIÓN',
-            'can' => 'any-admin'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarios',
             'icon' => 'fas fa-fw fa-users-cog',
-            'can' => 'any-users'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Proyectos',
             'url' => 'admin/proyectos',
             'icon' => 'fas fa-fw fa-project-diagram',
-            'can' => 'any-proyectos'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Formularios',
             'url' => 'admin/formularios',
             'icon' => 'fas fa-fw fa-clipboard',
-            'can' => 'any-users'
+            'can' => 'any-investigador'
         ],
         [
             'header' => 'REPORTES',
-            'can' => 'any-admin'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Reporte Alpha',
             'url' => 'admin/reportes/reporte-alpha',
             'icon' => 'fas fa-fw fa-table',
-            'can' => 'any-admin'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Reporte Betha',
             'url' => 'admin/reportes/reporte-betha',
             'icon' => 'fas fa-fw fa-table',
-            'can' => 'any-admin'
+            'can' => 'any-investigador'
         ],
         [
             'text' => 'Reporte Gamma',
             'url' => 'admin/reportes/reporte-gamma',
             'icon' => 'fas fa-fw fa-table',
-            'can' => 'any-admin'
+            'can' => 'any-investigador'
         ],
         [
             'header' => 'FORMULARIOS',
