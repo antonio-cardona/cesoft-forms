@@ -15,4 +15,20 @@ jQuery(document).ready(() => {
             jQuery("#form-crear-area").submit();
         }
     });
+
+    jQuery("button.btn-eliminar-area").on("click", (event) => {
+        var idArea = jQuery(event.delegateTarget).data("area-id");
+
+        Swal.fire({
+            title: `¿Confirma que desea eliminar el área y sus preguntas correspondientes?`,
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Si",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = route("delete-area", [idArea]);
+            }
+        });
+    });
 });

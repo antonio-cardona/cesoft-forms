@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Pregunta;
 use App\Models\Proyecto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class AreaNivelSuperiorController extends Controller
         $area->proyecto_id = $request->input('proyecto_id');
         $area->save();
 
-        return redirect("/admin/areas/{$area->proyecto_id}");
+        return redirect(route("listar-areas", [$area->proyecto_id]));
     }
 
     /**
@@ -61,6 +62,17 @@ class AreaNivelSuperiorController extends Controller
         $area->nombre = $request->input('nombre');
         $area->save();
 
-        return redirect("/admin/areas/{$area->proyecto->id}");
+        return redirect(route("listar-areas", [$area->proyecto_id]));
+    }
+
+    public function delete(Request $request, string $idArea): RedirectResponse
+    {
+        Pregunta::where("area_id", $idArea)->delete();
+
+        $area = Area::find($idArea);
+        $idProyecto = $area->proyecto->id;
+        $area->delete();
+
+        return redirect(route("listar-areas", [$idProyecto]));
     }
 }

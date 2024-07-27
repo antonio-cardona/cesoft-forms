@@ -50,18 +50,23 @@
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group" role="group" aria-label="Diseño Formulario">
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
+                                    <a role="button" class="btn btn-info btn-sm btn-ans mr-1"
                                         data-toggle="tooltip" data-placement="top" title="Preguntas Significativas"
                                         href="/admin/preguntas/{{ $area->id }}"">
                                         <i class="fas fa-plus"></i> Preguntas
                                     </a>
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1"
+                                    <a role="button" class="btn btn-info btn-sm btn-ans mr-1"
                                         data-toggle="tooltip" data-placement="top" title="Editar Area de Nivel Superior"
                                         href="/admin/areas/editar/{{ $area->id }}"">
                                         <i class=" fas fa-edit"></i>
                                     </a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                        data-placement="top" title="Eliminar Área"><i class="fas fa-minus"></i></button>
+                                    @if ($proyecto->status == "SIN-PUBLICAR")
+                                        <button type="button" class="btn btn-danger btn-sm btn-eliminar-area" data-toggle="tooltip"
+                                            data-placement="top" title="Eliminar Área"
+                                            data-area-id="{{ $area->id }}">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                         </td>
