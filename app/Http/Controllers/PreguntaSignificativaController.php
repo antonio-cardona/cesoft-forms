@@ -17,12 +17,11 @@ class PreguntaSignificativaController extends Controller
         $pregunta->area_id = $request->input('area_nivel_superior_id');
         $pregunta->save();
 
-        return redirect("/admin/preguntas/{$pregunta->area_id}");
+        return redirect(route("lista-preguntas", [$pregunta->area->id]));
     }
 
     public function preguntas(Request $request, string $idArea)
     {
-
         $area = Area::find($idArea);
         return view('preguntas.lista', [
             "proyecto" => $area->proyecto,
@@ -32,9 +31,9 @@ class PreguntaSignificativaController extends Controller
         ]);
     }
 
-    public function editar(Request $request, string $id)
+    public function editar(Request $request, string $idPregunta)
     {
-        $pregunta = Pregunta::find($id);
+        $pregunta = Pregunta::find($idPregunta);
         $area = $pregunta->area;
 
         return view(
@@ -53,6 +52,15 @@ class PreguntaSignificativaController extends Controller
         $pregunta->texto = $request->input('texto');
         $pregunta->save();
 
-        return redirect("/admin/preguntas/{$pregunta->area->id}");
+        return redirect(route("lista-preguntas", [$pregunta->area->id]));
+    }
+
+    public function delete(Request $request, string $idPregunta): RedirectResponse
+    {
+        $pregunta = Pregunta::find($idPregunta);
+        $idArea = $pregunta->area->id;
+        $pregunta->delete();
+
+        return redirect(route("lista-preguntas", [$idArea]));
     }
 }

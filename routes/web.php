@@ -91,7 +91,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-area");
 
-            Route::get('/eliminar', 'eliminar');
+            Route::get('/eliminar/{idArea}', 'delete')
+                ->name("delete-area");
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-area");
@@ -107,10 +108,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/crear', 'crear')
                 ->name("crear-pregunta");
 
-            Route::get('/editar/{id}', 'editar')
+            Route::get('/editar/{idPregunta}', 'editar')
                 ->name("editar-pregunta");
 
-            Route::get('/eliminar', 'eliminar');
+            Route::get('/eliminar/{idPregunta}', 'delete')
+                ->name("delete-pregunta");
 
             Route::post('/actualizar', 'actualizar')
                 ->name("actualizar-pregunta");
