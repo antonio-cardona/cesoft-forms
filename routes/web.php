@@ -54,7 +54,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-proyecto");
 
-            Route::get('/eliminar', 'eliminar');
+            Route::get('/eliminar/{idProyecto}', 'delete')
+                ->name("delete-proyecto");
 
             Route::get('/participantes/{idProyecto}', 'participantes')
                 ->name("participantes-proyecto");
@@ -130,8 +131,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-user");
 
-            Route::get('/eliminar', 'eliminar')
-                ->name("eliminar-user");
+            Route::get('/eliminar', 'delete')
+                ->name("delete-user");
 
             Route::post('/crear', 'crear')
                 ->name("crear-user");

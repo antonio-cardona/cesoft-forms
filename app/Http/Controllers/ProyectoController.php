@@ -284,4 +284,13 @@ class ProyectoController extends Controller
             'participantesDisponibles' => $participantesDisponibles,
         ]);
     }
+
+    public function delete(Request $request, string $idProyecto): RedirectResponse
+    {
+        $proyecto = Proyecto::find($idProyecto);
+        $proyecto->deleteAreas();
+        $proyecto->delete();
+
+        return redirect(route("lista-proyectos"));
+    }
 }

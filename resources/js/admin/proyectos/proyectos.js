@@ -24,4 +24,20 @@ jQuery(document).ready(() => {
             }
         });
     });
+
+    jQuery("button.btn-eliminar-proyecto").on("click", (event) => {
+        var idProyecto = jQuery(event.delegateTarget).data("proyecto-id");
+
+        Swal.fire({
+            title: `¿Confirma que desea eliminar el proyecto y todo su contenido?`,
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Si",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = route("delete-proyecto", [idProyecto]);
+            }
+        });
+    });
 });

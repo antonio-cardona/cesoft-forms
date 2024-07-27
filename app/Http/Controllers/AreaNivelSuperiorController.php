@@ -67,9 +67,8 @@ class AreaNivelSuperiorController extends Controller
 
     public function delete(Request $request, string $idArea): RedirectResponse
     {
-        Pregunta::where("area_id", $idArea)->delete();
-
         $area = Area::find($idArea);
+        $area->deletePreguntas();
         $idProyecto = $area->proyecto->id;
         $area->delete();
 

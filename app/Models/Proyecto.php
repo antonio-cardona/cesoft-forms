@@ -30,4 +30,12 @@ class Proyecto extends Model
     {
         return $this->belongsToMany(ClassificationData::class, "proyecto_classification_data");
     }
+
+    public function deleteAreas() {
+        $areas = $this->areas;
+        foreach ($areas as $area) {
+            $area->deletePreguntas();
+            $area->delete();
+        }
+    }
 }

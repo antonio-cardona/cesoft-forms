@@ -13,7 +13,7 @@
         </div>
 
         @if (Gate::allows('any-admin'))
-            <button id="btn-nuevo-proyecto" type="button" class="btn btn-primary my-3" style="margin-bottom: 12px;">
+            <button id="btn-nuevo-proyecto" type="button" class="btn btn-info my-3" style="margin-bottom: 12px;">
                 Crear nuevo Proyecto
             </button>
         @endif
@@ -38,23 +38,23 @@
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group mr-2" role="group" aria-label="Diseño Formulario">
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-info btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Áreas de Nivel Superior"
                                         href="/admin/areas/{{ $proyecto->id }}"">
                                         <i class=" fas fa-plus"></i> ANS
                                     </a>
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-info btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Datos de Clasificación"
                                         href="{{ route('datos-clasificacion-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-info-circle"></i>
                                     </a>
-                                    <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                    <a role="button" class="btn btn-info btn-sm btn-ans mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Participantes del Proyecto"
                                         href="{{ route('participantes-proyecto', [$proyecto->id]) }}">
                                         <i class=" fas fa-users-cog"></i>
                                     </a>
-                                    <button class="btn btn-primary btn-sm btn-ans btn-publicar-proyecto"
-                                        data-toggle="tooltip" data-placement="top"
+                                    <button class="btn btn-info btn-sm btn-ans btn-publicar-proyecto" data-toggle="tooltip"
+                                        data-placement="top"
                                         title="{{ $proyecto->status == 'SIN-PUBLICAR' ? 'Publicar' : 'Desactivar' }} proyecto"
                                         data-target-label="{{ $proyecto->status == 'SIN-PUBLICAR' ? 'publicar' : 'desactivar' }}"
                                         data-proyecto-nombre="{{ $proyecto->nombre }}"
@@ -69,16 +69,19 @@
 
                                 @if (Gate::allows('any-admin'))
                                     <div class="btn-group mr-2" role="group" aria-label="Datos Proyecto">
-                                        <a role="button" class="btn btn-primary btn-sm btn-ans mr-1" data-toggle="tooltip"
+                                        <a role="button" class="btn btn-info btn-sm btn-ans mr-1" data-toggle="tooltip"
                                             data-placement="top" title="Editar proyecto"
                                             href="/admin/proyectos/editar/{{ $proyecto->id }}"">
                                             <i class=" fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Eliminar Proyecto">
+                                    </div>
+                                    @if ($proyecto->status == 'SIN-PUBLICAR')
+                                        <button type="button" class="btn btn-danger btn-sm btn-eliminar-proyecto"
+                                            data-toggle="tooltip" data-placement="top" title="Eliminar Proyecto"
+                                            data-proyecto-id="{{ $proyecto->id }}">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                    </div>
+                                    @endif
                                 @endif
                             </div>
                         </td>

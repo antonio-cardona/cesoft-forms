@@ -29,4 +29,8 @@ class Area extends Model
     {
         return $this->belongsToMany(Form::class, "form_areas");
     }
+
+    public function deletePreguntas() {
+        Pregunta::where("area_id", $this->id)->delete();
+    }
 }
