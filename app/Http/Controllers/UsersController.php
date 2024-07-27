@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Form;
+use App\Models\FormArea;
+use App\Models\FormPregunta;
+use App\Models\FormProyectoClassificationData;
 use App\Models\Proyecto;
+use App\Models\ProyectoResearcher;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -114,6 +119,23 @@ class UsersController extends Controller
                 "roles" => $roles
             ]
         );
+    }
+
+    public function delete(Request $request, string $idUser) : RedirectResponse
+    {
+        ProyectoResearcher::where("user_id", $idUser)->delete();
+
+        $userForms = Form::where("user_id", $idUser)->get();
+        foreach ($userForms as $userForm) {
+            FormProyectoClassificationData::where("form_id", $userForm->id)->delete();
+            FormPregunta::where("form_id", $userForm->id)->delete();
+            FormArea::where("form_id", $userForm->id)->delete();
+            $userForm->delete();
+        }
+
+        User::find($idUser)->delete();
+
+        return redirect(route("lista-users"));
     }
 
     /**

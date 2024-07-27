@@ -131,7 +131,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/editar/{id}', 'editar')
                 ->name("editar-user");
 
-            Route::get('/eliminar', 'delete')
+            Route::get('/eliminar/{idUser}', 'delete')
                 ->name("delete-user");
 
             Route::post('/crear', 'crear')

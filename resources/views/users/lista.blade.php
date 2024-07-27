@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm"></div>
         </div>
-        <button id="btn-nuevo-user" type="button" class="btn btn-primary" style="margin-bottom: 12px;">
+        <button id="btn-nuevo-user" type="button" class="btn btn-info" style="margin-bottom: 12px;">
             Nuevo Usuario
         </button>
 
@@ -34,11 +34,17 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <a role="button" class="btn btn-primary btn-sm btn-ans"
+                                        <a role="button" class="btn btn-info btn-sm btn-ans"
                                             data-toggle="tooltip" data-placement="top" title="Editar el usuario"
                                             href="{{ route('editar-user', [$user->id]) }}"">
                                             <i class=" fas fa-edit"></i> Editar
                                         </a>
+                                        <button type="button" class="btn btn-danger btn-sm btn-eliminar-user" data-toggle="tooltip"
+                                            data-placement="top" title="Eliminar Usuario"
+                                            data-user-id="{{ $user->id }}"
+                                            data-user-name="{{ $user->name }}">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
