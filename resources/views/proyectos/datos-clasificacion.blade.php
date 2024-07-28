@@ -9,12 +9,12 @@
 @stop
 
 @section('content')
-    <div class="container">
+    <div class="container pb-5">
         <h4>Datos de Identificación</h4>
         <div class="row">
             <div class="col-sm-3">
                 <h5>Disponibles:</h5>
-                <div class="drag-identificacion border rounded-sm">
+                <div class="drag-identificacion border rounded-sm p-1">
                     @php
                         $totalOccupiedDropZone = count($idData);
                     @endphp
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-1"></div>
+            <div class="col-sm-3"></div>
 
             <div class="col-sm-6">
                 <h5>Seleccionados:</h5>
@@ -93,7 +93,7 @@
                 <h5>Disponibles:</h5>
 
                 <div class="drag-identificacion border rounded-sm">
-                    <div class="row row-cols-2">
+                    <div class="row row-cols-2 my-2 mx-1">
                         @php
                             $totalOccupiedDropZone = count($cData);
                         @endphp
@@ -102,13 +102,13 @@
                                 @php
                                     $cInfo = $cData[$i];
                                 @endphp
-                                <div class="dropzone draggable-dropzone--occupied" data-dropzone="2">
+                                <div class="dropzone draggable-dropzone--occupied px-1" data-dropzone="2">
                                     <div class="item">
                                         <x-classification-data-card :nombre="$cInfo->nombre" :id="$cInfo->id" />
                                     </div>
                                 </div>
                             @else
-                                <div class="dropzone" data-dropzone="2"></div>
+                                <div class="dropzone px-1" data-dropzone="2"></div>
                             @endif
                         @endfor
                     </div>
@@ -132,7 +132,7 @@
                                     </div>
                                 @endfor
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 ">
                                 <div id="classification-selected-list" class="drag-identificacion border rounded-sm">
                                     @php
                                         $totalOccupiedDropZone = count($cDataSelected);

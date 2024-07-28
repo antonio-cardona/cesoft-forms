@@ -1,4 +1,4 @@
-import { Droppable } from "@shopify/draggable";
+import { Droppable, Plugins } from "@shopify/draggable";
 import axios from "axios";
 
 jQuery(document).ready(() => {
@@ -7,6 +7,10 @@ jQuery(document).ready(() => {
         {
             draggable: ".item",
             dropzone: ".dropzone",
+            mirror: {
+                constrainDimensions: true,
+            },
+            plugins: [Plugins.ResizeMirror],
         }
     );
 
@@ -48,14 +52,15 @@ jQuery(document).ready(() => {
             });
         });
 
+        let idProyecto = jQuery("#id-proyecto").val();
         axios
-            .post("/admin/proyectos/datos-clasificacion/guardar", {
-                idProyecto: jQuery("#id-proyecto").val(),
+            .post(route("guardar-datos-clasificacion-proyecto"), {
+                idProyecto: idProyecto,
                 identification: identification,
                 classification: classification
             })
             .then(function (response) {
-                location.href = "/admin/proyectos/datos-clasificacion"
+                location.href = route("datos-clasificacion-proyecto", [idProyecto]);
             })
             .catch(function (error) {
                 console.log(error);
